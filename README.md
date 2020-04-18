@@ -1,2 +1,2 @@
-# info_sec_proj
-Scripts and stuff regarding our study of malware
+# Proyecto de Seguridad: Estudio de Malware Oculto
+Documentos y scripts relacionados con nuestro estudio del malware
