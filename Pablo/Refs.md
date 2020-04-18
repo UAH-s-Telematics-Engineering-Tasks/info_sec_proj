@@ -1,2 +1,3 @@
-- Metasploit Atomation -> he selected arch is incompatible with the payload
-- Shikata-Ga-Nai Explained -> he selected arch is incompatible with the payload
+- Metasploit Atomation -> https://www.offensive-security.com/metasploit-unleashed/writing-meterpreter-scripts/
+- Shikata-Ga-Nai Explained -> https://marcosvalle.github.io/re/exploit/2018/08/25/shikata-ga-nai.html
+- Yet Another Sjikata Site -> https://www.boozallen.com/c/insight/blog/the-shikata-ga-nai-encoder.html
