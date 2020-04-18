@@ -1,0 +1,2 @@
+- Metasploit Atomation -> he selected arch is incompatible with the payload
+- Shikata-Ga-Nai Explained -> he selected arch is incompatible with the payload
