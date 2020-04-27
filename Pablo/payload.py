@@ -1,5 +1,7 @@
 import socket, subprocess
 
+# TODO: Implement ONE TIME PAD Encryption
+
 def main():
     rev_sck = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     rev_sck.connect(('127.0.0.1', 5001))

@@ -1,5 +1,7 @@
 import socket, select, sys
 
+# TODO: Implement ONE TIME PAD Encryption
+
 def main():
     cnx_scks = [sys.stdin, socket.socket(socket.AF_INET, socket.SOCK_STREAM)]
     cnx_scks[1].bind(('127.0.0.1', 5001))
