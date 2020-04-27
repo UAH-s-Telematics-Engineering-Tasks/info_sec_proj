@@ -58,3 +58,32 @@ Como ya comentamos anteriormente, uno de los mecanismos más comunes para detect
 En definitiva, lo que hemos logrado generar es un programa que, de ser ejecutado en la máquina víctima, nos proporcionará acceso desde la máquina atacante.
 
 ## Llevando a cabo el ataque
+Hasta ahora no hemos explicado qué es lo que hace el payload que estamos generadon. Sabemos que tenemos un programa que, de ejecutarse en la víctima, nos daría acceso a la misma pero desconocemos cómo lo hace.
+
+Gracias al nombre del payload, los parámetros que acepta y la información que nos proporciona un analizador de protocolos como WireShark podemos hacernos una idea de lo que está ocurriendo. El programa generado al ejecutarse simplemente abrirá un socket que utiliza TCP en la capa de transporte (de ahí el sufijo tcp del nombre del payload) y que tratará de conectarse de vuelta a la máquina atacante (de ahí el reverse del nombre). Una vez se establezca la conexión este programa se baja una shell que le suministra el atacante y que pasará a ejecutar en la víctima, cosa que nos brinda acceso al sistema objetivo.
+
+Ahora bien, este payload debe saber cómo conectarse de vuelta a la máquina atacante. Es aquí donde entran en juego las opciones `LHOST` y `LPORT` que se encargan de identificar a la máquina atacante a través de su dirección IP (`LHOST`) así como al programa que espera recibir la conexión del payload a través de un número de puerto (`LPORT`). En el fondo este payload resulta ser, desde un punto de vista general, tremendamente sencillo.
+
+Una vez que se haya ejecutado el programa malicioso en la víctima debemos aceptar la conexión de vuelta y poner todo a funcionar. Para ello haremos uso de la consola de metasploit a través del comando `msfconsole`. Debemos configurar nuestra sesión para que acepte la conexión que esperamos y descargue a través de ésta la shell que deseamos ejecutar en la máquina atacante. Al fin y al cabo lo que queremos lograr es tener una sesión en la víctima que nos permita controlarla.
+
+Al igual que hicimos con la generación del payload hemos automatizado el proceso a través de un script en bash que está enteramente comentado (troj_c_n_c.sh). Tras lanzarlo esperaremos la conexión del payload una vez se ejecute y pasaremos a tener automáticamente un indcutor (prompt) esperando órdenes para ejecutar en la víctima.
+
+Si bien tenemos shells tradicionales como bash, zsh o ksh en este caso estamos tratando con un entorno totalmente distinto. Si recordamos el nombre del payload y nos quemos con la última parte (`meterpreter/reverse_tcp`) veremos que nuestro payload se puede desglosar en 2 partes:
+
+- Stager: reverse_tcp -- Se encarga de la conexión de vuelta a la máquina atacante
+- Stage: meterpreter -- Shell a ejecutar
+
+Vemos pues que el inductor que aparece en el atacante pertence a esta shell. La forma de cargar esta shell en memoria es a través de la inyección del código descargado en el espacio de memoria del proceso que ya generó la conexión de vuelta. Es decir, en una primera instance el stager se conecta de vuelta al cenctro de control (máquina atacante). Al ejecutarse este payload se genera un proceso, como en cualquier otra ocasión. Tras descargarse el código compilado de meterpreter éste se carga en el espacio de memoria del proceso y pasamos a ejecutar la shell que recibimos de vuelta.
+
+Vemos pues quel el proceso implica una serie de pasos a pesar de ser relativamente sencillo. Al tratarse de un entorno totalmente nuevo tenemos una gran cantidad de herramientas y órdenas que nos permitirán recabar la información que estemos buscando.
+
+Como ya dijimos antes, consideramos el caso en el que el usuario ejecuta directamente nuestro programa ya sea por desconocimiento, valentía o inconsciencia. Esto implica normalmente que no tendremos permisos administrativos, es decir, podremos hacer tanto como podríamos con una cuenta de usuario normal y corriente. Esto abre la puerta a las etapas posteriores tras la entrada en el sistema: la post-explotación. Una vía de acción típica es el escalado de privilegios para lograr el control total de la víctima, por ejemplo. Dado que no es el tema que nos atañe lamentamos tener que dejarlo aquí...
+
+## Nuestra propia versión
+Tras analizar el funcionamiento de la solución ofrecida por Metasploit nos decidimos a intententar algo parecido con un programa propio. Dada la facilidad que ofrece al desarrollo optamos por emplear Python como lenguaje para implementar nuestra propuesta. Somos conscientes de que lo que hemos escrito es mucho menos sofisticado que lo que podemos lograr con Metasploit pero queríamos llevar a cabo nuestra propia prueba de concepto.
+
+En vez de intentar cargar un entorno nuevo a través de la conexión que hacemos de vuelta al centro de control hemos optado por emplear la shell del propio sistema. Para ello hacemos uso de la librería `subprocess` que nos permite inspeccionar la salida de comandos del sistema. La arquitectura de nuestro programa es por tanto muy sencilla. El payload solo se encarga de abrir una conexión TCP hasta el atacante y espera a recibir comandos. Al recibirlos los ejecuta en la víctima para devolver la salida de los mismos al centro de control. El proceso continúa hasta que uno de los dos programas muere, lo que precipita el cierre de la conexión.
+
+Asimismo hemos optado por encriptar las comunicaciones con un método muy simple. La salida de los comandos ejecutados en la víctima se devuelven como texto plano al atacante y por tanto podrían ser leídas por cualquiera. Nosotros hemos decidido hacer un one-time pad con el texto para evitar en la medida de lo posible este efecto. Para lograr el secreto perfecto deberíamos tener una clave tan larga como el texto claro a cifrar y dada la naturaleza interactiva de la sesión esto supone una gran dificultad... Es por ello que reutilizamos cíclicamente la clave, cosa que debilia la encriptación. Asimismo esta clave se distribuye como una colección de bytes "hardcodeada" en el programa con lo que si alguien consultara las fuentes podría obtenerela... Reiteramos pues que estamos tratando de llevar a cabo una prueba de concepto y que esto no es, bajo ningún concepto, una implementación robusta.
+
+## Esquivando a los antivirus
