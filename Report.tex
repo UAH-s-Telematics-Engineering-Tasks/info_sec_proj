@@ -119,8 +119,8 @@
 
             Con todo, vamos a pasar a comentar instancias reales de este tipo de malware.
 
-    \section{Tipos de malware}
-    Como hemos comentado, el mundo de los malwares es muy amplio y diverso con lo que nos encontramos muchos tipos diferentes. En nuestro caso nos centraremos en el malware oculto, que a su vez comprende muchas variantes y posibilidades. Nosotros las acotaremos centrándonos en los troyanos, las puertas traseras o \textit{backdoors}, los \textit{rootkits} y los \textit{drive-by downloads}, cuyas cualidades más reseñables comentamos más abajo.
+    \section{Tipos de malware oculto}
+        Como hemos comentado, el mundo de los malwares es muy amplio y diverso con lo que nos encontramos muchos tipos diferentes. En nuestro caso nos centraremos en el malware oculto, que a su vez comprende muchas variantes y posibilidades. Nosotros las acotaremos centrándonos en los troyanos, las puertas traseras o \textit{backdoors}, los \textit{rootkits} y los \textit{drive-by downloads}, cuyas cualidades más reseñables comentamos más abajo.
 
         \subsection{Troyanos}
             Los troyanos son el primer paso de muchos ataques informáticos que se llevan a cabo. Su nombre se basa en la famosa leyenda de la mitología griega del caballo de Troya, una enorme estructura de madera que tenía el aspecto del propio animal y que, a primera vista, parecía que no entrañar ningún peligro. No obstante, en su interior albergaba a varios soldados que empleaban este procedimiento para esconderse y no ser descubiertos. Al caer la noche los soldados tomaron la hasta entonces inexpugnable ciudad de Troya.
@@ -229,5 +229,74 @@
             \newpar
 
             Las páginas web que contienen estos programas pueden ser accedidas explícitamente por el usuario al ser conocedor de ellas y realizar su busqueda en un navegador web, tal y como puede suceder con entornos de escasa seguridad relacionados con recursos un tanto peculiares como, por ejemplo, la pornografía. Un usuario también puede ser conducido a ellas a través de la recepción de correos electrónicos que le invitan a ello y ventanas emergentes. En este últimos caso, el aspecto familiar y aparentemente inofensivo favorece que la víctima en ningún momento llegue a sospechar de ellas.
+
+            \newpar
+
+            Conociendo ya los tipos de malware en los que se centra nuestro análisis pasamos a comentar casos de ataques reales.
+
+    \section{Casos reales}
+        Para que podamos comprender mejor el alcance que pueden llegar a tener este tipo de malware, hemos decidido recopilar información de algunos ataques reales que han sido realizados bajo la técnica del malware oculto y que han afectado a un gran número de usuarios, los cuales en algunos casos probablemente ni si quiera se han dado cuenta de haber sido comprometidos.
+
+        \subsection{El "coronavirus" informático}
+            Uno de los ataques más recientes con el uso de malware oculto está siendo el llamado \textit{"Coronavirus" informático} y es que los hackers están aprovechando la pandemia actual del \texttt{COVID-19} para ocultar malware dentro de todo tipo de documentos y vídeos. Este ataque esta siendo realizado por lo general en informaciones que nos llegan a nuestros dispositivos sobre cómo protegernos del coronavirus, los métodos de detección y actualizaciones sobre el estado de alarma. El usuario, al estar interesado en ellos, accede a abrirlos sin esperarse que estos archivos estén infectados.
+
+            \newpar
+
+            Según \texttt{Kaspersky}, la famosa empresa de ciberseguridad que desarrolla un antivirus homónimo, hasta la fecha han sido encontrados por los momentos $10$ archivos distintos con malware ocultos. Sin embargo, se estima de que la tendencia aumente debido es considerado un cebo perfecto, ya que es una información que se puede propagar de manera extraordinaria dentro de la población. Como podemos observar en la figura \ref{f:covid_malware} el número de dominios creados entorno al \texttt{COVID-19} ha ido aumentado de forma exponencial, es por ello que los expertos no dudan en que muchos de estos dominios terminen siendo usados por los hackers.
+
+            \begin{figure}
+                \centering
+                \includegraphics[width=\linewidth]{covid_malware.png}
+                \caption{Dominios creadoos entorno al \texttt{COVID-19}}
+                \label{f:covid_malware}
+            \end{figure}
+
+        \subsection{Aplicacones móviles ocultas}
+            Según un estudio realizado por la compañía \texttt{McAfee} para el año $2019$, las aplicaciones móviles ocultas generaron aproximadamente el $50\%$ de todos los ataques a móviles de ese mismo año. El problema viene dado porque los hackers maliciosos han ido mejorando las formas de ocultar sus ataques, logrando que cada vez sean más difíciles de identificar y eliminar.
+
+            \newpar
+
+            Los hackers aprovechan generar versiones falsas de aplicaciones como \texttt{WhatsApp} o \texttt{Spotify} debido al alto impacto de descargas que estás pueden llegar a obtener. De igual forma se aprovechan de la popularidad de algunos juegos para engañar a los usuarios, y es que una vez el cliente haga uso de la \textit{app}, el atacante adquiere la capacidad de controlar todo el dispositivo y muchas veces el usuario ni se da cuenta de que ésto está pasando.
+
+        \subsection{Troyano Eurograbber}
+            Durante el año $2012$, en Europa se vivió bajo la acción de un troyano conocido como \texttt{Eurograbber}. Este ataque ha sido uno de los grandes asaltos informáticos ya que se saldó con la sustracción de $36$ millones de euros en toda Europa, y es que este ataque afectó cerca de unos $30.000$ usuarios de banca de países como Alemania, Italia, Países Bajos y España.
+
+            \newpar
+
+            En España cerca de $11.000$ personas vieron sus cuentas bancarias afectadas, lo que le permitió a los ciberdelincuentes hacerse con un botín estimado de $5,8$ millones de euros. Los ataques por lo general eran realizados a dispositivos que basados en \texttt{Android} y a los de la marca \texttt{BlackBerry} que emplean un sistema operativo propio.
+
+        \subsection{Troyanos en diispositivos móviles}
+            En el año $2019$ se descubrió la existencia de un troyano oculto en la aplicación de \texttt{Android CamScanner}, la cual cuenta con más de $100$ millones de descargas en la \texttt{Google Play Store}. Este ataque fue descubierto gracias a las investigaciones de la empresa de seguridad \texttt{Kaspersky Lab}.
+
+            \newpar
+
+            El ataque se realizaba mediante una biblioteca de publicidad que contenía este componente malicioso. Al descargar la aplicación y ejecutarla, los hackers ya podían acceder al dispositivo infectado y beneficiarse de la manera que quisieran, desde mostrarle publicidad intrusiva hasta robar dinero de su cuenta móvil mediante el cobro de suscripciones.
+
+            \newpar
+
+            Este es uno de los casos de mayor alerta debido a que se trataba de una aplicación legítima de \texttt{Android} que usaba compras integradas y a que su monetización provenía de los anuncios. La aplicación en su momento fue eliminada por \texttt{Google} de la \texttt{Play Store} para evitar que los usuarios se siguieran viendo afectados.
+
+        \subsection{Análisis de los troyanos en los últimos años}
+            Hemos analizado el informe \texttt{Ciber amenazas 2015/2016} publicado por el \texttt{Centro Criptológico Nacional} donde se muestra el análisis del aumento de dichos ataques en España. En esta gráfica podemos de igual forma observar que más de la mitad de los ataques durante el año $2015$, fueron realizados mediante troyanos. La gráfica en cuestión se adjunta en la figura \ref{f:cyber_threats}.
+
+            \begin{figure}
+                \centering
+                \includegraphics[width=\linewidth]{cyber_threats.png}
+                \caption{Aumento de troyanos en los años 2015/2016}
+                \label{f:cyber_threats}
+            \end{figure}
+
+            Otro estudio del año $2016$, realizado por la empresa \texttt{Cisco} analiza los principales ataques que recibían las empresas durante ese año, demostrando que dichos ataques no solo se relacionaban con la pérdida de dinero, sino que afectaban el prestigio y la reputación de cada compañía.
+
+            \newpar
+
+            En el análisis se puede apreciar que la principal vía de ataque es el uso de troyanos, ya sea tanto para pedir una recompensa por la información o que hayan sido descargados mediante softwares de manera oculta o que se hayan instalado mediante aplicaciones de Android. De igual forma se puede observar en la siguiente gráfica que otros de los principales ataques son por el uso de enlaces malignos para obtener información de los usuarios.
+
+
+
+
+
+
+
 
 \end{document}
