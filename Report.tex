@@ -4,6 +4,13 @@
 
 % Bibliography stuff:
     % bib:log_files -> https://www.blackploit.com/2011/08/eliminar-rastro-y-huellas-post.html
+    % bib:malware_calls -> S. Hofmeyr, S. Forrest, and A. Somayaji, “Intrusion detection using sequences of system calls.” Journal of Computer Security, pp. 151–180, 1998.
+    % bib:malware_asm -> D. Bruschi, L. Martignoni and M. Monga “Detecting self-mutating malware using control-flow graph matching,” In: Büschkes, R. and Laskov, P. (eds) Detection of Intrusions and Malware & Vulnerability Assessment, volume 4064 of LNCS, pp 129–143. Springer, Berlin. 2006.
+    % bib:malware_f_a -> T. M. Mitchell, “Machine learning and data mining,” Commun. ACM, vol. 42, no. 11, 1999.
+    % bib:malware_f_b -> L. Breiman. “Bagging Predictors.” Machine Learning, 24(2):123–140, 1996.
+    % bib:malware_f_c -> L. Breiman. “Random Forests.” Machine Learning, 45(1):5–32, 2001
+    % bib:malware_nodes
+    % bib:malware_hybrid -> M. Eskandari and S. Hashemi “Metamorphic malware detection using control flow graph mining”. International Journal of Compute Science Network Security,pp 1-6 ,2011
 
 % TODO:
     % Comment the scripts!
@@ -503,7 +510,7 @@
 
                 Este campo resulta sin duda interesante pero dado que solo queríamos preparar una pequeña demostración nos hemos visto obligados a solo mencionarlo. Esperamos haber sido claros exponiendo los conceptos y los pasos para reeproducir el ataque. A nosotros sin duda nos ha servido para comprender mejor el funcionamiento interno de este tipo de malware. Con todo, nos queda estudiar cómo detectar y prevenir este tipo de ataques.
 
-    \section{Detección y prevención de malware oculto}
+    \section{Detección de malware oculto}
         Existen varias maneras de poder detectar cuándo un software malicioso se ha introducido en un sistema o equipo determinado. A continuación mencionamos las más importantes.
 
         \subsection{Detección basada en firmas}
@@ -525,8 +532,67 @@
 
                 \newpar
 
-                Las desventajas más significativas de la detección basado en firmas son causadas debido a la base de datos. La base de datos juega un papel crucial en el sistema, por lo que tiene que estar siendo actualizada continuamente para que se puede detectar nuevos malware generados lo cual lo convierte en un sistema vulnerable a zero-day malware. Otra gran desventaja es que cuanto más grande sea la base de datos, más carga habrá sobre la CPU del sistema por lo que es difícil encontrar un equilibrio entre rapidez del sistema y eficacia de la base de datos. Esta técnica de detección tampoco es capaz de combatir malware que muta su código en cada infección como polymorphic y metamorphic malware.
+                Las desventajas más significativas de la detección basado en firmas son causadas debido a la base de datos. La base de datos juega un papel crucial en el sistema, por lo que tiene que estar siendo actualizada continuamente para que se puede detectar nuevos tipos de malware generados lo cual lo convierte en un sistema vulnerable a \textit{zero-day} malware. Esto es, tipos de malware de los que todavía no se ha tenido constancia con lo que no existe ninguna entrada en la base de datos que los identifique. Otra gran desventaja es que cuanto más grande sea la base de datos, más carga habrá sobre la CPU del sistema por lo que es difícil encontrar un equilibrio entre rapidez del sistema y eficacia de la base de datos. Esta técnica de detección tampoco es capaz de combatir malware que muta o modifica su código en cada infección como \textit{polymorphic} y \textit{metamorphic} malware. Esto se puede implementar a través de codificadores de payloads como \texttt{shikata-ga-nai}.
 
+        \subsection{Detección basada en comportamiento}
+            La detección basada en comportamiento evita el uso de las firmas criptográficas. Se analiza un archivo para determinar si es un posible malware centrándonos mucho más en qué hace el archivo al ejecutarlo en vez del contenido del mismo. Este tipo de mecanismo permite detectar malware que muta ya que siempre usarán los recursos y servicios del sistema de manera similar. Un detector basado en comportamiento está dividido en tres bloques:
 
+            \begin{itemize}
+                \item \textbf{Primer bloque}: Recoge información dinámica/estática del ejecutable.
+                \item \textbf{Segundo bloque}: Convierte la información obtenida en representaciones intermedias interpretables por el tercer bloque.
+                \item \textbf{Tercer bloque}: Utilizará las representaciones del segundo bloque para determinar si el archivo analizado es considerado como malware o no.
+            \end{itemize}
 
+            \subsubsection{Ventajas e inconvenientes}
+                La principal ventaja de este método es su capacidad de detectar el malware que el método por firmas no es capaz como malware desconocido y variaciones de malware polimórfico. Las desventajas más significativas son la alta tasa de falsos positivos y la cantidad de tiempo elevada que toma el escaneo de archivos ya que se debe ejecutar la muestra y estudiar su comportamiento.
+
+        \subsection{Detección basada en analísis heurístico}
+            La detección de malware utilizando análisis heurísticos fue creada para superar las desventajas encontradas en la detección por firmas o basada en el comportamiento. Los métodos usados para ello son el procesamiento de datos y las técnicas de aprendizaje automáticas para comprender el comportamiento de un ejecutable. Las características de este tipo de detección se pueden dividir generalmente en cuatro bloques.
+
+            \subsubsection{Llamadas a servicios del sistema operativo}
+                Casi todos los programas usan llamadas a la \texttt{API} que ofrece el sistema operativo. Las secuencias de peticiones de servicio se comportan como fragmentos de código malware. \textit{Hofmeyr} fue de los primeros que consideró estas secuencias como características de malware \cite{bib:malware_calls} por lo cual se desarrolló una detección basada en llamadas al sistema. La distancia de \textit{Haming}, que es el número mínimo de sustituciones que se tienen que efectuar sobre una cadena para que sea idéntica a otra, fue utilizado para comparar las secuencias de llamadas a al sistema y poder clasificar las muestras como malware. Destcamos, a modo de curiosidad, que esta misma definición de distancia es la que se apalica en los sistemas de escáner retinal que implementan el control de acceso de muchos edificios.
+
+            \subsubsection{Código operacional}
+                El código operacional consiste en la subdivisión de lenguaje de instrucciones de máquina que identifica la operación a realizar. Un programa está definido por una serie de instrucciones de ensamblador. \textit{Bilar} mostró la habilidad de utilizar código operacional como características en la detección de malware, analizó y demostró la alta fiabilidad para detectar amenazas de un ejecutable \cite{bib:malware_asm}. Hay varios tipos de detección de malware basadas en código operacional como por ejemplo un enfoque centrado en detectar variantes de malware ofuscado. Normalmente el procedimiento es descomponer el ejecutable en instrucciones de ensamblador y calcular la relevancia de estas instrucciones. Basándose en la técnica de frecuencia-peso de término se construye un vector que representa las características del ejecutable para poder ser estudiado como posible amenaza. También es posible detectar malware desconocido  y metamórfico basado en gráficas de medición de similitud. Para poder llevar a cabo esta técnica de detección basada en código operacional se extrae código operacional de archivos benignos y malwares y se compara el código operacional de ambos.
+
+            \subsubsection{Diagramas de flujo}
+                Los diagramas de flujo son representaciones gráficas que describen el funcionamiento de un algoritmo o proceso. Están compuestos por nodos que representan una instrucción del programa y de líneas que muestran el flujo de control entre instrucciones. Se puede detectar malware a través del uso del diagramas de flujo \cite{bib:malware_calls} mediante un conjunto de operaciones de normalización realizadas después de “desmontar” el ejecutable para reducir el efecto de tecnicas de mutacion y poder desvelar conexiones de flujo entre código benigno y malware. Se crea un diagrama de flujo que se comparará con diagramas de flujos de malware normalizado.
+
+                \newpar
+
+                \textit{Zhao} \cite{bib:malware_asm} propuso un método de detección de malware utilizando diagramas de flujo. Primero obtiene el diagrama siguiendo los pasos previos, a continuación utiliza las características obtenidas como información de los nodos, líneas de flujos y sub-flujos para utilizar un algoritmo de procesamiento de datos como \cite{bib:malware_f_a}, \cite{bib:malware_f_b} o \cite{bib:malware_f_b}.
+
+                \newpar
+
+                Los diagramas de flujo pueden ser incluso utilizados como firmas de detección. Como se ha mencionado los diagramas de flujo está compuesto por nodos y líneas de flujo y como sabemos el flujo de todo lenguaje ensamblador se controla con cuatro tipo de instrucciones elementales: saltos condicionales, saltos incondicionales, llamadas a función y retorno de llamadas. \textit{Bosfante} \cite{bib:malware_nodes} abstrajo cualquier secuencia de instrucciones seguidas en un nuevo nodo llamado \textit{inst} y al final del programa se creó otro nodos denominado \textit{end}. Utilizando estos seis nodos se construye un diagrama de flujo del ejecutable. Para reducir el tamaño del diagrama de flujo los nodos de salto incondicional y los nodos \textit{inst} son eliminados y se enlazan los nodos que estuvieran unidos por los eliminados. El resultado se utilizara como una firma.
+
+            \subsubsection{Características híbridas}
+                Cada bloque previamente estudiado tiene sus propias ventajas e inconvenientes a la hora de detectar malware. Por ejemplo, con el uso de diagramas de flujo se puede detectar fácilmente malware simple pero para detectar malware polimórfico o metamórfico no es suficiente. Es por eso que a la hora de crear un sistema de detección se usa una combinación de los bloques expuestos para obtener un mejor resultado. \textit{Eskandari} \cite{bib:malware_hybrid} creó un sistema que utilizaba diagramas de flujo y llamadas a la \texttt{API} estándar de \texttt{C} en aras de un mejor rendimiento de esta prevención.
+
+    \section{Prevención de malware oculto}
+        Existen muchos y muy efectivos métodos de detección de malware que nos ayudan a permanecer seguros y la mayoría son capaces de detectar el malware antes de que éste cause problema alguno. No obstante, como todos sabemos en "mejor prevenir que curar" por lo que poniendo en práctica las siguientes técnicas de prevención de malware creamos una capa de seguridad adicional.
+
+        \subsection{Proteger vulnerabilidades}
+            Hoy en día una de las herramientas más usadas a la hora de entregar malware son los \textit{exploit kits} y la manera más eficaz para protegerse contra ellos es tener las aplicaciones y el sistem operativo actualizados. Estas actualizaciones son a menudo lanzadas para parchear vulnerabilidades de seguridad descubiertas. Otra técnica bastante efectiva es habilitar la función \textit{click-to-play} que proporcionan plugins para navegadores. Esto se debe a que de estar deshabilitada esta función y, empleando anuncios maliciosos, algunos \textit{exploit kits} pueden introducirse en un sistema sin mediación alguna del usuario. Es también vital evitar la utilización de sistemas operativos que han dejado de tener mantenimiento periódico como por ejemplo \texttt{Windows 7} que este año vio como \texttt{Microsoft} le retiraba el soporte.
+
+        \subsection{Cuidado con la ingeniería social}
+            La estafa a través de técnicas de ingeniería social es otro metodo de infeccion muy utilizado en la actualidad. Ejemplos de este tipo de tácticas son correo electrónicos con apariencia inofensiva, campañas social sospechosa o incluso llamadas del soporte técnico de tu sistema operativo. Estando alerta de las siguientes tácticas de ingeniería social se puede prevenir ser engañado.
+
+            \begin{itemize}
+                \item Leer emails meticulosamente: La suplantación de identidad a través de un correo electrónico es exitosa sólo cuando los lectores no prestan atención o no saben en qué fijarse. Comprobando que la dirección de correo esté verificada, que los enlaces de redireccionamiento llevan a páginas oficiales, que no solicitan información privada por medios no seguros podemos estar bastanbte seguros de si el correo es o no legítimo.
+                \item Instalar programas falsos: Debemos ignorar los \textit{pop-ups} que ofrezcan ayuda contra malware mediante una aplicación no oficial ya que empresas reales de seguridad nunca se promociona mediante estas estrategias y menos alertando de que han detectado que estas infectado cuando ni siquiera tienes su aplicación instalada.
+            \end{itemize}
+
+        \subsection{Navegación segura}
+            \textit{“Siguiendo consejos básicos y manteniendo buenos hábitos a la hora de navegar evitaremos el 95\% de los ataques apuntando” , Adam Kujaya}
+
+            \newpar
+
+            Algunos de los consejos y hábitos son:
+
+            \begin{enumerate}
+                \item Usar contraseñas seguras o gestores de contraseñas como \texttt{Dashlane}.
+                \item Asegurarse de tener acceso a Internet a través de redes de acceso seguras.
+                \item Cerrar sesion de páginas cuando termines de utilizarlas.
+            \end{enumerate}
 \end{document}
