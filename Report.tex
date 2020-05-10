@@ -355,7 +355,7 @@
 
         \subsection{Desglosando un ataque}
             \subsubsection{Reconocimiento}
-                En esta fase nos centraremos en analizar la red en busca de objetivos valiosos para identiificar posibles puntos de ataque y así poder planificar la estrategia. Para poder llevar a cabo esta labor solemos aplicar una serie de técnicas:
+                En esta fase nos centraremos en analizar la red en busca de objetivos valiosos para identificar posibles puntos de ataque y así poder planificar la estrategia. Para poder llevar a cabo esta labor solemos aplicar una serie de técnicas:
 
                 \begin{itemize}
                     \item \textbf{\textit{Fingerprinting}}: Intentamos averiguar todo lo posible sobre la red objetivo a través de consultas en bases de datos como \texttt{WHOIS} que asocian nombres de dominio o direcciones \texttt{IP} a entidades concretas, por ejemplo. Podemos también optar por navegar por la web del objetivo, hacer consultas a servidores \texttt{DNS} para así obtener un rango de \texttt{IP}s atacables. Los defensores pueden tratar de mitigar esta recogida de información controlando qué se comparte en el dominio público y aplicando reglas adecuadas en firewalls.
@@ -379,7 +379,7 @@
 
             \newpar
 
-            Esperamos haber sido informativos aunque hayamos deseado dejar la anteior descripción en la mínima expresión. Pasamos pués a describir la demostración que hemos llevado a cabo.
+            Esperamos haber sido informativos aunque hayamos deseado dejar la anteior descripción en la mínima expresión. Pasamos pues a describir la demostración que hemos llevado a cabo.
 
         \subsection{Demostración}
             Aun siendo este trabajo eminentemente teórico hemos querido preparar una demostración práctica que sustente lo ya expuesto. Ya que los términos en los que hemos discutido los conceptos anteriores han sido de carácter general hemos optado por hacer lo mismo en esta demostración. Esto es, en vez de buscar un ataque tremendamente específico hemos escogido uno sencillo que nos permita analizar la base teórica de la que hacen uso de una manera clara y concisa.
@@ -412,7 +412,7 @@
 
                 \newpar
 
-                Para lograr esta ejecución de código arbitraria tenemos que sacar partido a alguna vulnerabilidad. Estas vulnerabilidades son errores en programas o interacciones entre partes del sistema que pueden ser aprovechadas para llevar a cabo acciones a priori no permitidas. La vulnerabilidad por si sola no implica nada, simplemente está ahí, esperando a ser arreglada mediante una actualización. Los atacantes sin embargo intentarán aprovecharla para lograr sus objetivos. En nuestro caso, la ejecución del \textit{payload} que hemos preparado.
+                Para lograr esta ejecución de código arbitraria tenemos que sacar partido a alguna vulnerabilidad. Estas vulnerabilidades son errores en programas o interacciones entre partes del sistema que pueden ser aprovechadas para llevar a cabo acciones \textit{a priori} no permitidas. La vulnerabilidad por si sola no implica nada, simplemente está ahí, esperando a ser arreglada mediante una actualización. Los atacantes sin embargo intentarán aprovecharla para lograr sus objetivos. En nuestro caso, la ejecución del \textit{payload} que hemos preparado.
 
                 \newpar
 
@@ -420,7 +420,7 @@
 
                 \newpar
 
-                En nuestro caso estamos interesados en analizar lo que ocurre una vez se ejecuta el \textit{payload}, no en la forma de lograrlo. Si aplicamos estos conceptos a raja tabla, en nuestro caso el exploit es el usuario, es quien va a ejecutar el programa que nos dará acceso a su sistema. Una vez analizado el funcionamiento de nuestro troyano entraremos a explicar una forma en la que podemos explotar el lector de PDFs Adobe Acrobat Reader para que no dependamos de el usuario. Creemos que al posponer esta explicación conseguiremos centrar la atención en el malware propiamente dicho mientras que, dada la independencia entre las fases del ataque, no dificultamos seguir esta demostración.
+                En nuestro caso estamos interesados en analizar lo que ocurre una vez se ejecuta el \textit{payload}, no en la forma de lograrlo. Si aplicamos estos conceptos a raja tabla, en nuestro caso el exploit es el usuario, es quien va a ejecutar el programa que nos dará acceso a su sistema. Una vez analizado el funcionamiento de nuestro troyano entraremos a explicar una forma en la que podemos explotar el lector de PDFs Adobe Acrobat Reader para que no dependamos del usuario. Creemos que al posponer esta explicación conseguiremos centrar la atención en el malware propiamente dicho mientras que, dada la independencia entre las fases del ataque, no dificultamos seguir esta demostración.
 
                 \newpar
 
@@ -504,7 +504,7 @@
                     \item \textit{Stage}: \texttt{meterpreter} -- Shell a ejecutar
                 \end{itemize}
 
-                Vemos pues que el inductor que aparece en el atacante pertenece a esta shell. La forma de cargar esta shell en memoria es a través de la inyección del código descargado en el espacio de memoria del proceso que ya generó la conexión de vuelta. Es decir, en una primera instance el stager se conecta de vuelta al cenctro de control (máquina atacante). Al ejecutarse este \textit{payload} se genera un proceso, como en cualquier otra ocasión. Tras descargarse el código compilado de meterpreter este se carga en el espacio de memoria del proceso y pasamos a ejecutar la shell que recibimos de vuelta.
+                Vemos pues que el inductor que aparece en el atacante pertenece a esta shell. La forma de cargar esta shell en memoria es a través de la inyección del código descargado en el espacio de memoria del proceso que ya generó la conexión de vuelta. Es decir, en una primera instance el stager se conecta de vuelta al centro de control (máquina atacante). Al ejecutarse este \textit{payload} se genera un proceso, como en cualquier otra ocasión. Tras descargarse el código compilado de meterpreter este se carga en el espacio de memoria del proceso y pasamos a ejecutar la shell que recibimos de vuelta.
 
                 \newpar
 
@@ -542,6 +542,8 @@
         \subsection{Detección basada en firmas}
             Es uno de los mecanismos más usados debido a su sencillez, velocidad y destacable precisión a la hora de identificar malware específico.
 
+            \newpar
+
             Este modo de detección compara la “firma” de los archivos a analizar con una base de datos y si hay coincidencia, el archivo es identificado como malware. Existen tres tipos de firmas.
 
             \subsubsection{Archivos completos}
@@ -576,7 +578,7 @@
             La detección de malware utilizando análisis heurísticos fue creada para superar las desventajas encontradas en la detección por firmas o basada en el comportamiento. Los métodos usados para ello son el procesamiento de datos y las técnicas de aprendizaje automáticas para comprender el comportamiento de un ejecutable. Las características de este tipo de detección se pueden dividir generalmente en cuatro bloques.
 
             \subsubsection{Llamadas a servicios del sistema operativo}
-                Casi todos los programas usan llamadas a la \texttt{API} que ofrece el sistema operativo. Las secuencias de peticiones de servicio se comportan como fragmentos de código malware. \textit{Hofmeyr} fue de los primeros que consideró estas secuencias como características de malware \cite{bib:malware_calls} por lo cual se desarrolló una detección basada en llamadas al sistema. La distancia de \textit{Haming}, que es el número mínimo de sustituciones que se tienen que efectuar sobre una cadena para que sea idéntica a otra, fue utilizado para comparar las secuencias de llamadas al sistema y poder clasificar las muestras como malware. Destacamos, a modo de curiosidad, que esta misma definición de distancia es la que se aplica en los sistemas de escáner retinal que implementan el control de acceso de muchos edificios.
+                Casi todos los programas usan llamadas a la \texttt{API} que ofrece el sistema operativo. Las secuencias de peticiones de servicio se comportan como fragmentos de código malware. \textit{Hofmeyr} fue de los primeros que consideró estas secuencias como características de malware \cite{bib:malware_calls} por lo cual se desarrolló una detección basada en llamadas al sistema. La distancia de \textit{Haming}, que es el número mínimo de sustituciones que se tienen que efectuar sobre una cadena para que sea idéntica a otra, fue utilizada para comparar las secuencias de llamadas al sistema y poder clasificar las muestras como malware. Destacamos, a modo de curiosidad, que esta misma definición de distancia es la que se aplica en los sistemas de escáner retinal que implementan el control de acceso de muchos edificios.
 
             \subsubsection{Código operacional}
                 El código operacional consiste en la subdivisión de lenguaje de instrucciones de máquina que identifica la operación a realizar. Un programa está definido por una serie de instrucciones de ensamblador. \textit{Bilar} mostró la habilidad de utilizar código operacional como características en la detección de malware, analizó y demostró la alta fiabilidad para detectar amenazas de un ejecutable \cite{bib:malware_asm}. Hay varios tipos de detección de malware basadas en código operacional como por ejemplo un enfoque centrado en detectar variantes de malware ofuscado. Normalmente el procedimiento es descomponer el ejecutable en instrucciones de ensamblador y calcular la relevancia de estas instrucciones. Basándose en la técnica de frecuencia-peso de término se construye un vector que representa las características del ejecutable para poder ser estudiado como posible amenaza. También es posible detectar malware desconocido  y metamórfico basado en gráficas de medición de similitud. Para poder llevar a cabo esta técnica de detección basada en código operacional se extrae código operacional de archivos benignos y malwares y se compara el código operacional de ambos.
@@ -602,7 +604,7 @@
             Hoy en día una de las herramientas más usadas a la hora de entregar malware son los \textit{exploit kits} y la manera más eficaz para protegerse contra ellos es tener las aplicaciones y el sistema operativo actualizados. Estas actualizaciones son a menudo lanzadas para parchear vulnerabilidades de seguridad descubiertas. Otra técnica bastante efectiva es habilitar la función \textit{click-to-play} que proporcionan plugins para navegadores. Esto se debe a que de estar deshabilitada esta función y, empleando anuncios maliciosos, algunos \textit{exploit kits} pueden introducirse en un sistema sin mediación alguna del usuario. Es también vital evitar la utilización de sistemas operativos que han dejado de tener mantenimiento periódico como por ejemplo \texttt{Windows 7} que este año vio como \texttt{Microsoft} le retiraba el soporte.
 
         \subsection{Cuidado con la ingeniería social}
-            La estafa a través de técnicas de ingeniería social es otro metodo de infección muy utilizado en la actualidad. Ejemplos de este tipo de tácticas son correos electrónicos con apariencia inofensiva, campañas social sospechosas o incluso llamadas del soporte técnico de tu sistema operativo. Estando alerta de las siguientes tácticas de ingeniería social se puede prevenir ser engañado.
+            La estafa a través de técnicas de ingeniería social es otro metodo de infección muy utilizado en la actualidad. Ejemplos de este tipo de tácticas son correos electrónicos con apariencia inofensiva, campañas sociales sospechosas o incluso llamadas del soporte técnico de tu sistema operativo. Estando alerta de las siguientes tácticas de ingeniería social se puede prevenir ser engañado.
 
             \begin{itemize}
                 \item Leer emails meticulosamente: La suplantación de identidad a través de un correo electrónico es exitosa sólo cuando los lectores no prestan atención o no saben en qué fijarse. Comprobando que la dirección de correo esté verificada, que los enlaces de redireccionamiento llevan a páginas oficiales, que no solicitan información privada por medios no seguros podemos estar bastante seguros de si el correo es o no legítimo.
@@ -619,7 +621,7 @@
             \begin{enumerate}
                 \item Usar contraseñas seguras o gestores de contraseñas como \texttt{Dashlane}.
                 \item Asegurarse de tener acceso a Internet a través de redes de acceso seguras.
-                \item Cerrar sesion de páginas cuando termines de utilizarlas.
+                \item Cerrar sesión de páginas cuando termines de utilizarlas.
             \end{enumerate}
 
     \section{Sistemas de detección de intrusiones}
@@ -654,7 +656,7 @@
 
                     \begin{enumerate}
                         \item \textbf{Alarmas y notificaciones}: \textit{Pop-ups}, notificaciones remotas a teléfonos móviles o buscas y notificación vía e-mail \textbf{desaconsejada??}. Programas como \texttt{Grafana} permiten construir paneles de control visuales que facilitan esta labor.
-                        \item \textbf{Traps SNMP}: Algunos \texttt{IDS} generan alarmas y las envían a centrales de gestión de red. Para ello hace uso del protocolo de gestión \texttt{SNMP} que cuenta con un mecanismo de notificaciones asíncronas de los agentes controlados al controlador. Esto son, en efecto, las \textit{traps} que comentábamos. Esto peprmite adaptar toda la infraestructura de red ante un ataque y libera al equipo afectado por el ataque de la carga de procesar las acciones de respuesta al mismo.
+                        \item \textbf{Traps SNMP}: Algunos \texttt{IDS} generan alarmas y las envían a centrales de gestión de red. Para ello hace uso del protocolo de gestión \texttt{SNMP} que cuenta con un mecanismo de notificaciones asíncronas de los agentes controlados al controlador. Esto son, en efecto, las \textit{traps} que comentábamos. Esto permite adaptar toda la infraestructura de red ante un ataque y libera al equipo afectado por el ataque de la carga de procesar las acciones de respuesta al mismo.
                     \end{enumerate}
 
             \subsubsection{Detalles varios de los IDS}
@@ -695,14 +697,14 @@
                 En definitiva, permiten obtener un informe exhaustivo de la máquina monitorizada con lo que se incrementan las posibilidades de detectar ataques y situaciones anómalas.
 
             \subsubsection{Inconvenientes}
-                Tienen poca escalabilidad ya que solo puede haber un \texttt{IDS} por host. Estos \texttt{IDS} pueden ser también objetivo de ataque y pueden ser deshabilitados en ataques \texttt{DoS} (de denegación de srvicio). No son adecuados cuando se produce \texttt{sniffing} (se captura y "lee") del tráfico de red o para ataques de sondeo de redes enteras. Además, al generar gran cantidad de información, afectan al rendimiento del \texttt{host} que los aloja.
+                Tienen poca escalabilidad ya que solo puede haber un \texttt{IDS} por host. Estos \texttt{IDS} pueden ser también objetivo de ataque y pueden ser deshabilitados en ataques \texttt{DoS} (de denegación de servicio). No son adecuados cuando se produce \texttt{sniffing} (se captura y "lee") del tráfico de red o para ataques de sondeo de redes enteras. Además, al generar gran cantidad de información, afectan al rendimiento del \texttt{host} que los aloja.
 
 
         \subsection{Network-based IDS o NIDS}
             Capturan y analizan los paquetes de la red a la que están conectados. Consiste en un conjunto de \textit{hosts} denominados sensores cuyas tarjetas están en modo promiscuo y se encuentran en segmentos de red. También existe una máquina en el perímetro de la red a proteger. Al analizarlos más de cerca nos damos cuenta de sus principales ventajas e inconvenientes.
 
             \subsubsection{Ventajas}
-                La escalabilidad es alta ya que podemos controlar una red de gran tamaño sin demasiadas máquinas. Esta estrategia presenta un bajo impacto en el funcionamiento de la red y la seguridad que logramos es elevada ya que estas máquinas dedicadas suelene ser invisibles a los atacantes.
+                La escalabilidad es alta ya que podemos controlar una red de gran tamaño sin demasiadas máquinas. Esta estrategia presenta un bajo impacto en el funcionamiento de la red y la seguridad que logramos es elevada ya que estas máquinas dedicadas suelen ser invisibles a los atacantes.
 
             \subsubsection{Inconvenientes}
                 La eficiencia suele ser un problema ya que es difícil analizar grandes cantidades de tráfico. Asimismo, el acceso a información de las redes de circuitos conmutados es más complicado y este tipo de \texttt{IDS} no puede analizar información cifrada a nivel de red. Además, no detectan el resultado del ataque una vez que este ha sucedido y pueden tener problemas con la fragmentación de datagramas \texttt{IP} ya que esto dificulta recomponer el tráfico.
