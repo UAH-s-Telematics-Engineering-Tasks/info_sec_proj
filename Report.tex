@@ -1,6 +1,15 @@
 \documentclass[12pt]{article}
 
+% Handle characters beyond ASCII nicely
 \usepackage[utf8]{inputenc}
+
+% Change the language for the captions and default names
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\refname}{Referencias}
+
+% Make the References section show up in the table of contents
+\usepackage[nottoc, numbib]{tocbibind}
 
 % Bibliography stuff:
     % bib:malware_nodes
@@ -9,31 +18,41 @@
 % TODO:
     % Comment the scripts!
 
+% Let us cite the bibliography entries
 \usepackage{cite}
 
+% Time to add images
 \usepackage{graphicx}
 \graphicspath{{img/}}
 
+% Links please!
 \usepackage{hyperref}
+
+% Link style!
 \hypersetup{
     colorlinks = true,
     linkcolor = blue,
     filecolor = magenta,
     urlcolor = cyan,
 }
-
 \urlstyle{same}
 
+% Modify the margins
 \usepackage{geometry}
 \geometry{
- a4paper,
- left = 19mm,
- right = 19mm,
- top = 15mm,
- }
+    a4paper,
+    left = 19mm,
+    right = 19mm,
+    top = 15mm,
+}
 
+% Enable fixed-width centered columns
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+
+% Insert space between paragraphs
 \newcommand{\newpar} {
-    \vskip 1cm
+    \vskip 0.5cm
 }
 
 \title{Investigación sobre el \texttt{malware} oculto}
@@ -47,6 +66,7 @@
 
     \newpage
     \tableofcontents
+    \newpage
 
     \section{Introducción}
         Con el aumento del uso de las nuevas tecnologías en general y de \texttt{Internet} en particular se han incrementado los ataques e intrusiones a equipos e información. Esto puede comprometer la integridad, confidencialidad y disponibilidad de los recursos del sistema. Todo ello se debe a la creciente exposición ante ataques propiciados por un mayor conocimiento del funcionamiento de los sistemas por parte de los intrusos. Por ello están mejor preparados para encontrar y explotar vulnerabilidades. Gracias al fácil acceso y transmisión de información técnica que tenemos hoy en día, es posible incluso explotarlas desde el mismo momento en el que se da a conocer un \textit{software}. Estas son las llamadas vulnerabilidades \textit{zero-day}. Con la facilidad actual para encontrar "huecos" por los que "colarnos" en un sistema se abre la puerta a la proliferación de ataques con estrategias y tipos tremenedamente variados.
@@ -692,19 +712,19 @@
                 Incluimos una tabla que compara estos dos principales tipos de \texttt{IDS} en la tabla \ref{t:hids_nids}.
 
         \begin{table}
-            \begin{tabular}{|c|c|c|c|}
+            \begin{tabular}{|c|c|c|P{7.5cm}|}
                 \hline
                 \textbf{Función} & \textbf{HIDS} & \textbf{NIDS} & \textbf{Comentarios}\\
                 \hline
-                Protección en \texttt{LAN} & \texttt{Sí} & \texttt{Sí} & Ambos sistemas protegen una \texttt{LAN}\\
+                Protección en \texttt{LAN} & \texttt{Sí} & \texttt{Sí} & Ambos sistemas protegen una \texttt{LAN}.\\
                 \hline
-                Protección fuera de una \texttt{LAN} & \texttt{Sí} & \texttt{No} & Solo el \texttt{HIDS} protege fuera de una \texttt{LAN}\\
+                Protección fuera de una \texttt{LAN} & \texttt{Sí} & \texttt{No} & Solo el \texttt{HIDS} protege fuera de una \texttt{LAN}.\\
                 \hline
                 Facilidad de implementación & \texttt{Sí} & \texttt{Sí} & Ambos son igual de fáciles de implementar con un control centralizado.\\
                 \hline
-                Escaneo de máquinas & \texttt{Sí} & \texttt{No} & Solo el \texttt{HIDS} puede hacer estos escaneos\\
+                Escaneo de máquinas & \texttt{Sí} & \texttt{No} & Solo el \texttt{HIDS} puede hacer estos escaneos.\\
                 \hline
-                Rechazo de paquetes & \texttt{No} & \texttt{Sí} & Solo el \texttt{NIDS} puede llevar a cabo esta función\\
+                Rechazo de paquetes & \texttt{No} & \texttt{Sí} & Solo el \texttt{NIDS} puede llevar a cabo esta función.\\
                 \hline
                 Compatibilidad multiplataforma & \texttt{No} & \texttt{Sí} & El \texttt{NIDS} es independiente del \texttt{SO} de las máquinas.\\
                 \hline
@@ -724,7 +744,9 @@
 
     \section{Conclusión}
 
-    \section{Bibliografía}
-        %\bibliographytyle{plain}
-        %\bibliography{bibtex_refs}{}
+    \newpage
+    % Make uncited entries appear!
+    \nocite{*}
+    \bibliographystyle{plain}
+    \bibliography{refs}{}
 \end{document}
