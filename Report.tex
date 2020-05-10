@@ -3,17 +3,13 @@
 \usepackage[utf8]{inputenc}
 
 % Bibliography stuff:
-    % bib:log_files -> https://www.blackploit.com/2011/08/eliminar-rastro-y-huellas-post.html
-    % bib:malware_calls -> S. Hofmeyr, S. Forrest, and A. Somayaji, “Intrusion detection using sequences of system calls.” Journal of Computer Security, pp. 151–180, 1998.
-    % bib:malware_asm -> D. Bruschi, L. Martignoni and M. Monga “Detecting self-mutating malware using control-flow graph matching,” In: Büschkes, R. and Laskov, P. (eds) Detection of Intrusions and Malware & Vulnerability Assessment, volume 4064 of LNCS, pp 129–143. Springer, Berlin. 2006.
-    % bib:malware_f_a -> T. M. Mitchell, “Machine learning and data mining,” Commun. ACM, vol. 42, no. 11, 1999.
-    % bib:malware_f_b -> L. Breiman. “Bagging Predictors.” Machine Learning, 24(2):123–140, 1996.
-    % bib:malware_f_c -> L. Breiman. “Random Forests.” Machine Learning, 45(1):5–32, 2001
     % bib:malware_nodes
     % bib:malware_hybrid -> M. Eskandari and S. Hashemi “Metamorphic malware detection using control flow graph mining”. International Journal of Compute Science Network Security,pp 1-6 ,2011
 
 % TODO:
     % Comment the scripts!
+
+\usepackage{cite}
 
 \usepackage{graphicx}
 \graphicspath{{img/}}
@@ -605,4 +601,130 @@
                 \item Asegurarse de tener acceso a Internet a través de redes de acceso seguras.
                 \item Cerrar sesion de páginas cuando termines de utilizarlas.
             \end{enumerate}
+
+    \section{Sistemas de detección de intrusiones}
+        \subsection{¿Qué son estos sistemas?}
+            Un \texttt{IDS} se implementa en hardware o software y automatiza la detección de amenazas monitorizando sistemas y redes de computadores en busca de evidencias de violación de una determinada política de seguridad. Ante tal detección, genera informes interpretables por bases de datos. Pasamos a profundizar en las partes que lo componen.
+
+            \subsubsection{Registro de eventos}
+                Este registro de evenetos es la fuente de información que será procesada por el \texttt{IDS}. Estos datos se pueden obtener de fuentes externas, asociadas a la red o de internas de los sistemas individuales. Cada fuente puede detectar ciertos eventos específicos.
+
+            \subsubsection{Motor de análisis}
+                Este motor se encargará de organizar y caracterizar los datos de actividad del sistema o red en busca de información que sea de interés. Los modos más comunes son:
+
+                \begin{enumerate}
+                    \item Detección de un mal uso o \textit{misuse detection}
+                    \item Detección de anomalías o \textit{anomaly detection}
+                \end{enumerate}
+
+            \subsubsection{Componente de respuesta}
+                Las respuestas a intrusiones se dividen en dos tipos: activas y pasivas. Los sistemas comerciales actuales contemplan una variedad de respuestas activas, pasivas y combinaciones de ambas.
+
+                \paragraph{Respuestas activas}
+                    Tras producirse un evento se realiza una acción preconfigurada. Definir estas acciones puede suponer un problema ya que son respuestas automatizadas. Entre ellas encontramos:
+
+                    \begin{enumerate}
+                        \item \textbf{Recopilar información adicional}: Incrementa el nivel de sensibilidad de las fuentes y redirige el ataque a máquinas señuelo o \textit{honeypots}.
+                        \item \textbf{Tratar de detener el ataque}: Corta la conexión o niega el acceso a \texttt{IP}s determinadas . Reconfigura mecanismos de filtrado de paquetes y deshabilita interfaces de red.
+                        \item \textbf{Tomar acciones contra el atacante}: Contacta con el administrador de la red atacante o directamente contraataca.
+                    \end{enumerate}
+
+                \paragraph{Respuestas pasivas}
+                    Se limitan a registrar el evento sucedido. Entre ellas se encuentran:
+
+                    \begin{enumerate}
+                        \item \textbf{Alarmas y notificaciones}: \textit{Pop-ups}, notificaciones remotas a teléfonos móviles o buscas y notificación vía e-mail \textbf{desaconsejada??}. Programas como \texttt{Grafana} permiten construir paneles de control visuales que facilitan esta labor.
+                        \item \textbf{Traps SNMP}: Algunos \texttt{IDS} generan alarmas y las envían a centrales de gestión de red. Para ello hace uso del protocolo de gestión \texttt{SNMP} que cuenta con un mecanismo de notificaciones asíncronas de los agentes controlados al controlador. Esto son, en efecto, las \textit{traps} que comentábamos. Ésto peprmite adaptar toda la infraestructura de red ante un ataque y libera al equipo afectado por el ataque de la carga de procesar las acciones de respuesta al mismo.
+                    \end{enumerate}
+
+            \subsubsection{Detalles varios de los IDS}
+                Además de la diferenciación de los \texttt{IDS} por las características de sus componentes, se pueden también clasificar según su arquitectura en dos tipos: integrados en el objeto de la detección y separado de él.
+
+                \newpar
+
+                Se pueden monitorizar varios elementos: \textit{hosts} a través de \textit{logs} a nivel del sistema operativo, redes mediante la captura de paquetes y aplicaciones a partir de sus \textit{logs}, por ejemplo.
+
+                \newpar
+
+                También se pueden seguir diferentes estrategias de monitorización. Dependiendo del tipo de control puede ser centralizado o distribuido. Se puede detectar anomalías y la mala utilización, a intervalos fijos o en tiempo real. Debemos de ajustar estos detalles adecuadamente para cumplir nuestros objetivos.
+
+                \newapr
+
+                Un punto a tener en cuenta cuando se utiliza un \texttt{IDS} es su tolerancia a fallos e invisibilidad. Un atacante no debería poder identificar al \texttt{IDS}, puesto que lo atacarían directamente. Por lo que las respuestas no deben alertarlos. El uso de criptografía y túneles cifrados hará más difícil que un posible atacante detecte las alertas generadas por el \texttt{IDS} y actúe en consecuencia.
+
+                \newpar
+
+                Pasamos pues a extendernos algo más en los dos principales tipos de \texttt{IDS} que se emplean.
+
+        \subsection{Host-based IDS o HIDS}
+            Este tipo de \texttt{IDS} obtiene la información de los propios dispositivos. Los \textit{logs} del sistema son más fáciles de interpretar, pero están menos detallados.
+
+            \newpar
+
+            Los registros de auditorías proporcionan información procedente del \textit{kernel} del sistema operativo. En general, esa información es más detallada, fiable y difícil de alterar.
+
+            \newpar
+
+            Los monitores de objetivos monitorizan el estado de determinados objetos del sistema. Por ejemplo, los verificadores de integridad. Así, este tipo de \texttt{IDS} será adecuado en función de lo que queramos lograr.
+
+            \subsubsection{Ventajas}
+                Permiten determinar qué procesos y usuarios están involucrados en un determinado ataque (y distinguir entre procesos y usuarios), observar el desenlace de diversos ataques (escalada de privilegios, \textit{buffer overflows}) y detectar anomalías en la ejecución de procesos (troyanos y otros tipos de software malicioso, intentos de modificación del \textit{kernel}), entre otros eventos.
+
+                \newpar
+
+                En definitiva, permiten obtener un informe exhaustivo de la máquina monitorizada con lo que se incrementan las posibilidades de detectar ataques y situaciones anómalas.
+
+            \subsubsection{Inconvenientes}
+                Tienen poca escalabilidad ya que solo puede haber un \texttt{IDS} por host. Estos \texttt{IDS} pueden ser también objetivo de ataque y pueden ser deshabilitados en ataques \texttt{DoS} (de denegación de srvicio). No son adecuados cuando se produce \texttt{sniffing} (se captura y "lee") del tráfico de red o para ataques de sondeo de redes enteras. Además, al generar gran cantidad de información, afectan al rendimiento del \texttt{host} que los aloja.
+
+
+        \subsection{Network-based IDS o NIDS}
+            Capturan y analizan los paquetes de la red a la que están conectados. Consiste en un conjunto de \textit{hosts} denominados sensores cuyas tarjetas están en modo promiscuo y se encuentran en segmentos de red. También existe una máquina en el perímetro de la red a proteger. Al analizarlos más de cerca nos damos cuenta de sus principales ventajas e inconvenientes.
+
+            \subsubsection{Ventajas}
+                La escalabilidad es alta ya que podemos controlar una red de gran tamaño sin demasiadas máquinas. Esta estrategia presenta un bajo impacto en el funcionamiento de la red y la seguridad que logramos es elevada ya que estas máquinas dedicadas suelene ser invisibles a los atacantes.
+
+            \subsubsection{Inconvenientes}
+                La eficiencia suele ser un problema ya que es difícil analizar grandes cantidades de tráfico. Asimismo, el acceso a información de las redes de circuitos conmutados es más complicado y este tipo de \texttt{IDS} no puede analizar información cifrada a nivel de red. Además, no detectan el resultado del ataque una vez que éste ha sucedido y pueden tener problemas con la fragmentación de datagramas \texttt{IP} ya que ésto dificulta recomponer el tráfico.
+
+                \newpar
+
+                Incluimos una tabla que compara estos dos principales tipos de \texttt{IDS} en la tabla \ref{t:hids_nids}.
+
+        \begin{table}
+            \begin{tabular}{|c|c|c|c|}
+                \hline
+                \textbf{Función} & \textbf{HIDS} & \textbf{NIDS} & \textbf{Comentarios}\\
+                \hline
+                Protección en \texttt{LAN} & \texttt{Sí} & \texttt{Sí} & Ambos sistemas protegen una \texttt{LAN}\\
+                \hline
+                Protección fuera de una \texttt{LAN} & \texttt{Sí} & \texttt{No} & Solo el \texttt{HIDS} protege fuera de una \texttt{LAN}\\
+                \hline
+                Facilidad de implementación & \texttt{Sí} & \texttt{Sí} & Ambos son igual de fáciles de implementar con un control centralizado.\\
+                \hline
+                Escaneo de máquinas & \texttt{Sí} & \texttt{No} & Solo el \texttt{HIDS} puede hacer estos escaneos\\
+                \hline
+                Rechazo de paquetes & \texttt{No} & \texttt{Sí} & Solo el \texttt{NIDS} puede llevar a cabo esta función\\
+                \hline
+                Compatibilidad multiplataforma & \texttt{No} & \texttt{Sí} & El \texttt{NIDS} es independiente del \texttt{SO} de las máquinas.\\
+                \hline
+            \end{tabular}
+            \caption{Comparación entre \texttt{HIDS} y \texttt{NIDS}}
+            \label{t:hids_nids}
+        \end{table}
+
+        \subsection{Application-based IDS}
+            Este tipo de \texttt{IDS} trabaja a nivel de aplicación y han de emplearse junto con un \texttt{HIDS} o \texttt{NIDS} para proteger apropiadamente. Pasamos a comentar sus puntos fuertes y débiles.
+
+            \subsubsection{Ventajas}
+                Detectan ataques específicos a una aplicación y el análisis es más exhaustivo.
+
+            \subsubsection{Inconvenientes}
+                Los \texttt{logs} de las aplicaciones están menos protegidos. Trabajan en espacio de usuario y no son capaces de detectar troyanos.
+
+    \section{Conclusión}
+
+    \section{Bibliografía}
+        \bibliographytyle{plain}
+        \bibliography{bibtex_refs}{}
 \end{document}
