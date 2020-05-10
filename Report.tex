@@ -37,7 +37,7 @@
 }
 
 \title{Investigación sobre el \texttt{malware} oculto}
-\author{Noelia Díez Pinto \\ Cristian Camilo Morales Tapias \\ Ricardo Casanova \\ Carlos Ortega Marchamalo \\ Pablo Collado Soto}
+\author{Noelia Díez Pinto \\ Cristian Camilo Morales Tapias \\ Ricardo Alfonso Casanova Lozano \\ Carlos Ortega Marchamalo \\ Pablo Collado Soto}
 \date{}
 
 \begin{document}
@@ -77,7 +77,7 @@
 
         \newpar
 
-        En la actualidad, este tipo de programas ha encontrado en Internet el medio predilecto para poder propagarse, ya sea mediante páginas web infectadas, correo electrónico sospechoso que suele ser enviado en masa (conocido también como \textit{spam}), archivos compartidos en línea, demos de videojuegos, barras de herramientas o de cualquier otra cosa que se descargue de la red de redes. Muchas muestras relaes de malware tienen también la capacidad de autopropagarse. Una vez que se ha infectado una máquina de una red local algunos "bichos" implementan técnicas de movimeinto lateral que les permieten infectar a máquinas de la misma red. Esto supone que no existe una fuente única: cada infectado puede muchas veces contagiar. Este hecho encuentra su reflejpo en el mundo real. A pesar de lo brutal de la situación actual podemos aprender de ella y observar cómoo de fácil es que se descontrole un virus. En el caso del malware podemos llegar a experimentar escenarios parecidos como fue el caso de la \textit{Mirai Botnet} que en su punto álgido llegó a componerse de $600,000$ equipos infectados tal y como vemos en \ref{mirai_art}.
+        En la actualidad, este tipo de programas ha encontrado en Internet el medio predilecto para poder propagarse, ya sea mediante páginas web infectadas, correo electrónico sospechoso que suele ser enviado en masa (conocido también como \textit{spam}), archivos compartidos en línea, demos de videojuegos, barras de herramientas o de cualquier otra cosa que se descargue de la red de redes. Muchas muestras reales de malware tienen también la capacidad de autopropagarse. Una vez que se ha infectado una máquina de una red local algunos "bichos" implementan técnicas de movimeinto lateral que les permiten infectar a máquinas de la misma red. Esto supone que no existe una fuente única: cada infectado puede muchas veces contagiar. Este hecho encuentra su reflejo en el mundo real. A pesar de lo brutal de la situación actual podemos aprender de ella y observar cómo de fácil es que se descontrole un virus. En el caso del malware podemos llegar a experimentar escenarios parecidos como fue el caso de la \textit{Mirai Botnet} que en su punto álgido llegó a componerse de $600,000$ equipos infectados tal y como vemos en \ref{mirai_art}.
 
         \newpar
 
@@ -93,13 +93,13 @@
             \item Espía o \textit{spyware}
             \item Publicitario o \textit{adware}
             \item Orientados a ataques de denegación de servicio (\textit{DDoS})
-            \item Secuestro de información o\textit{ransomware}
+            \item Secuestro de información o \textit{ransomware}
             \item Engaño 
         \end{itemize}
 
         \newpar
 
-        En nuestro caso hablaremos del malware oculto, y abarcaremos desde los diferentes tipos que existen hasta su respectivo método de propagación pasando por las medidas de prevención y defensa que se deben tomar para evitar el ataque de estos programas. Pasamos pues a profundizar en aquello que define al mlaware oculto.
+        En nuestro caso hablaremos del malware oculto, y abarcaremos desde los diferentes tipos que existen hasta su respectivo método de propagación pasando por las medidas de prevención y defensa que se deben tomar para evitar el ataque de estos programas. Pasamos pues a profundizar en aquello que define al malware oculto.
 
         \subsection{¿Y qué es el malware oculto?}
             Un malware podrá alcanzar sus objetivos siempre y cuando permanezca oculto a la vista del usuario. Es por ello que denominamos malware oculto a aquellos programas nocivos cuyo ingreso al sistema y posterior ataque ocurre de manera silenciosa, es decir, sin que el usuario lo perciba y sin su consentimiento. Dentro de esta clasificación de malware oculto podemos de igual forma encontrar diversos malwares como son:
@@ -123,16 +123,16 @@
 
             \begin{itemize}
                 \item \textbf{El registro de Windows}: Varios programas han sido creados con la posibilidad de modificar este registro para poder controlar el tiempo en el que quieran que se ejecute el software, ya sea al iniciar el sistema o después de cada tiempo programado, entre otros.
-                \item \textbf{Archivos y carpetas temporales}: Es uno de los lugares donde casi siempre se oculta el malware. Ejemplos claros de estos archivos y carpetas temporales son la caché de Internet o la de datos de las aplicaciones. Al almacenarse en estos lugares una gran cantidad de información del usuario, residir ahí les permite mutar y amenzar con eliminar o difundir la información que encuentren. Con ello pueden lograr maximizar su impacto y capacidad destructiva.
+                \item \textbf{Archivos y carpetas temporales}: Es uno de los lugares donde casi siempre se oculta el malware. Ejemplos claros de estos archivos y carpetas temporales son la caché de Internet o la de datos de las aplicaciones. Al almacenarse en estos lugares una gran cantidad de información del usuario, residir ahí les permite mutar y amenazar con eliminar o difundir la información que encuentren. Con ello pueden lograr maximizar su impacto y capacidad destructiva.
                 \item \textbf{Accesos directos}: Abarca las páginas web que han sido modificadas para realizar sus ataques, de igual forma pueden incluir archivos ejecutables modificados que a vista del usuario sea difícil encontrar las diferencias con respecto al original.
-                \item \textbf{Accesos directos}: Muchas veces modifican o crean accesos directos de aspecto legítimo que al ser ejecutados lanzan el propio programa malicioso. Ésta similitud con los programas que un usuario espera encontrr supone una gran dificultad para su detección...
-                \item \textbf{Descarga de archivos}: El malware puede entrar al sistema a través de archivos descargados, ya sean de música o simples documentos de \texttt{Word, Excel} o \texttt{PDF}. Lo mismo puede ocurrir con las aplicaciones. Todos ellos pueden ueden haber sito modificados para albergar un malware que entrará en acción tan pronto como reproduzcamos, abramos o ejecutemos alguno de estos archivos.
-                \item \textbf{E-mail}: Éste es uno de los principales puntos de entrada de malware al sistema. Una forma muy popular de esparcir malware es a través de correo no deseado o \textit{SPAM}. Estos tipos de correos son un peligro inactivo hasta que el usuario por error entra en ellos y descarga algún archivo o entre en una página maliciosa. A modo de curiosidad destacamos que la palabra \textit{SPAM} deriva de un tipo de carne de consumo militar. Nunca sabes lo que puedes aprender...
+                \item \textbf{Accesos directos}: Muchas veces modifican o crean accesos directos de aspecto legítimo que al ser ejecutados lanzan el propio programa malicioso. Esta similitud con los programas que un usuario espera encontrar supone una gran dificultad para su detección...
+                \item \textbf{Descarga de archivos}: El malware puede entrar al sistema a través de archivos descargados, ya sean de música o simples documentos de \texttt{Word, Excel} o \texttt{PDF}. Lo mismo puede ocurrir con las aplicaciones. Todos ellos pueden haber sido modificados para albergar un malware que entrará en acción tan pronto como reproduzcamos, abramos o ejecutemos alguno de estos archivos.
+                \item \textbf{E-mail}: Este es uno de los principales puntos de entrada de malware al sistema. Una forma muy popular de esparcir malware es a través de correo no deseado o \textit{SPAM}. Estos tipos de correos son un peligro inactivo hasta que el usuario por error entra en ellos y descarga algún archivo o entre en una página maliciosa. A modo de curiosidad destacamos que la palabra \textit{SPAM} deriva de un tipo de carne de consumo militar. Nunca sabes lo que puedes aprender...
             \end{itemize}
 
             \newpar
 
-            El malware oculto también ha llegado al internet de las cosas o \textbf{IoT} (\textbf{I}nternet \textbf{o}f \textbf{T}hings) por en sus siglas en inglés. Este nuevo paradigma que tiende a conectar todo dispositivo a Internet ha supuesto un aumento en el número de ciberataques. Dispositivos como cámaras \texttt{IP} y lámparas inteligentes son conocidos por las medidas de seguridad tan laxas que incorporan por lo que en la actualidad pueden llegar a convertirse en los puntos débiles dentro de nuestra red. Así, este tipo de equipos pueden servir de puente para realizar ataque a nuestros ordenadores o móviles. Un caso feahaciente de ésto es la \textit{Mirai Botnet} que comentábamos antes. Tras haber infectado varias centenas de miles de quipos fue capaz de "tumbar" servicios preparados para aguantar grandes cargas de tráfico. Si bien este caso se relaciona con el malware cuyo objetivo es efectuar ataques de denengación de servicio nos muestra cómo cualquier vulnerabilidad es suficiente para que el malware pueda propagarse e infectar distintos equipos.
+            El malware oculto también ha llegado al internet de las cosas o \textbf{IoT} (\textbf{I}nternet \textbf{o}f \textbf{T}hings) por sus siglas en inglés. Este nuevo paradigma que tiende a conectar todo dispositivo a Internet ha supuesto un aumento en el número de ciberataques. Dispositivos como cámaras \texttt{IP} y lámparas inteligentes son conocidos por las medidas de seguridad tan laxas que incorporan por lo que en la actualidad pueden llegar a convertirse en los puntos débiles dentro de nuestra red. Así, este tipo de equipos pueden servir de puente para realizar ataque a nuestros ordenadores o móviles. Un caso fehaciente de esto es la \textit{Mirai Botnet} que comentábamos antes. Tras haber infectado varias centenas de miles de equipos fue capaz de "tumbar" servicios preparados para aguantar grandes cargas de tráfico. Si bien este caso se relaciona con el malware cuyo objetivo es efectuar ataques de denegación de servicio nos muestra cómo cualquier vulnerabilidad es suficiente para que el malware pueda propagarse e infectar distintos equipos.
 
             \newpar
 
@@ -142,15 +142,15 @@
         Como hemos comentado, el mundo de los malwares es muy amplio y diverso con lo que nos encontramos muchos tipos diferentes. En nuestro caso nos centraremos en el malware oculto, que a su vez comprende muchas variantes y posibilidades. Nosotros las acotaremos centrándonos en los troyanos, las puertas traseras o \textit{backdoors}, los \textit{rootkits} y los \textit{drive-by downloads}, cuyas cualidades más reseñables comentamos más abajo.
 
         \subsection{Troyanos}
-            Los troyanos son el primer paso de muchos ataques informáticos que se llevan a cabo. Su nombre se basa en la famosa leyenda de la mitología griega del caballo de Troya, una enorme estructura de madera que tenía el aspecto del propio animal y que, a primera vista, parecía que no entrañar ningún peligro. No obstante, en su interior albergaba a varios soldados que empleaban este procedimiento para esconderse y no ser descubiertos. Al caer la noche los soldados tomaron la hasta entonces inexpugnable ciudad de Troya.
+            Los troyanos son el primer paso de muchos ataques informáticos que se llevan a cabo. Su nombre se basa en la famosa leyenda de la mitología griega del caballo de Troya, una enorme estructura de madera que tenía el aspecto del propio animal y que, a primera vista, parecía no entrañar ningún peligro. No obstante, en su interior albergaba a varios soldados que empleaban este procedimiento para esconderse y no ser descubiertos. Al caer la noche los soldados tomaron la hasta entonces inexpugnable ciudad de Troya.
 
             \newpar
 
-            Basándose en esa idea, este tipo de malware consiste en un programa que en primera instancia parece inofensivo, hasta el punto de poder resultar atractivo, por lo que las víctimas que lo padecen no son capaces de percibir su peligrosidad debido a su apariencia amigable. Sin embargo, una vez que se descarga y llega a ejecutarse, se pone en marcha su cometido real que no es otro que el de infectar la máquina que lo aloja para posibilitar que el atacante que se encuentra detrás de él se haga con el control de la misma, todo ello de manera transparente y prácticamente imperceptible para el usuario. Estos troyanos son muchas veces el punto de partida para ataques de maypor índole. Que pueden pasar por allbergar e instalar otros tipos de malware en el equipo, por ejemplo.
+            Basándose en esa idea, este tipo de malware consiste en un programa que en primera instancia parece inofensivo, hasta el punto de poder resultar atractivo, por lo que las víctimas que lo padecen no son capaces de percibir su peligrosidad debido a su apariencia amigable. Sin embargo, una vez que se descarga y llega a ejecutarse, se pone en marcha su cometido real que no es otro que el de infectar la máquina que lo aloja para posibilitar que el atacante que se encuentra detrás de él se haga con el control de la misma, todo ello de manera transparente y prácticamente imperceptible para el usuario. Estos troyanos son muchas veces el punto de partida para ataques de mayor índole. Que pueden pasar por albergar e instalar otros tipos de malware en el equipo, por ejemplo.
 
             \newpar
 
-            De este modo, en un primer momento, los troyanos se empleaban para realizar el mayor daño posible sin ningún tipo de miramiento. Intentaban desde formatear el ordenador envenenado a eliminar archivos del sistema. Sin embargo, no consiguieron la trascendencia y notoriedad que buscaban, limitados por la imposibilidad de propagarse y multiplicarse por si mismos. Ésta es una diferencia notablle con los virus y los gusanos informáticos y que les frenaba en gran medida. Por ello pasaron a buscar nuevos objetivos en los que enfocarse.
+            De este modo, en un primer momento, los troyanos se empleaban para realizar el mayor daño posible sin ningún tipo de miramiento. Intentaban desde formatear el ordenador envenenado a eliminar archivos del sistema. Sin embargo, no consiguieron la trascendencia y notoriedad que buscaban, limitados por la imposibilidad de propagarse y multiplicarse por si mismos. Esta es una diferencia notable con los virus y los gusanos informáticos y que les frenaba en gran medida. Por ello pasaron a buscar nuevos objetivos en los que enfocarse.
 
             \newpar
 
@@ -158,7 +158,7 @@
 
             \newpar
 
-            De forma similar, pueden también implementar diversos mecanismos que facilitan la conexión al ordenador desde otros lugares como, por ejemplo, las denominadas puertas traseras o \textit{backdoors}. Para realizar estas técnicas, los troyanos son capaces de abrir de puertos de comunicaciones o \textit{sockets} de tal forma que se consigue abrir un punto a través del que es posible alcanzar el equipo infectado.
+            De forma similar, pueden también implementar diversos mecanismos que facilitan la conexión al ordenador desde otros lugares como, por ejemplo, las denominadas puertas traseras o \textit{backdoors}. Para realizar estas técnicas, los troyanos son capaces de abrir puertos de comunicaciones o \textit{sockets} de tal forma que se consigue abrir un punto a través del que es posible alcanzar el equipo infectado.
 
             \newpar
 
@@ -170,14 +170,14 @@
 
             \newpar
 
-            Los troyanos se componen de dos partes de vital importania para su correcto funcionamiento e implementación. Así, constan de un cliente y un servidor, alojándose en la máquina atacada y atacante, respectivamente. Al estudiar las fases típicas de un ataque así como un ejemplo real ahondaremos más en este modelo cliente-servidor.
+            Los troyanos se componen de dos partes de vital importancia para su correcto funcionamiento e implementación. Así, constan de un cliente y un servidor, alojándose en la máquina atacada y atacante, respectivamente. Al estudiar las fases típicas de un ataque así como un ejemplo real ahondaremos más en este modelo cliente-servidor.
 
         \subsection{Backdoors}
             Una de las funcionalidades de las que hacen uso estos troyanos son las puertas traseras o \textit{backdoors}, por lo tanto, no constituyen un mecanismo independiente de ataque informático sino que más bien son un complemento a estos últimos.
 
             \newpar
 
-            Los fines de las backdoors pueden resultar muy diversos y variados y no todos tienen por qué ser dañinos y perjudiciales. Pueden derivar de múltiples orígenes, no únicamente relacionadas a los troyanos, pues puede darse la situación de que los desarrolladores de sistemas y aplicaciones se olvidaran de eliminarlas o bloquearlas o, simplemente, continúen existiendo para efectuar determinadas tareas legales de mantenimiento o actualización de forma transparente al usuario, sin que se requiera de su participación y facilitando su experiencia y uso. Esto ocurre, por ejemplo, en equipos que reciben actualizaciones sin que su dueño sea consciente de ello. También se emplean estas \textit{backdors} para solucionar problemas técnicos mediante el acceso remoto de un especialista sin que deba mediar el usuario.
+            Los fines de las backdoors pueden resultar muy diversos y variados y no todos tienen por qué ser dañinos y perjudiciales. Pueden derivar de múltiples orígenes, no únicamente relacionadas a los troyanos, pues puede darse la situación de que los desarrolladores de sistemas y aplicaciones se olvidaran de eliminarlas o bloquearlas o, simplemente, continúen existiendo para efectuar determinadas tareas legales de mantenimiento o actualización de forma transparente al usuario, sin que se requiera de su participación y facilitando su experiencia y uso. Esto ocurre, por ejemplo, en equipos que reciben actualizaciones sin que su dueño sea consciente de ello. También se emplean estas \textit{backdoors} para solucionar problemas técnicos mediante el acceso remoto de un especialista sin que deba mediar el usuario.
 
             \newpar
 
@@ -193,18 +193,18 @@
 
             \newpar
 
-            Las puertas traseras, tal y como hemos mencionado, se implementan abriendo puertos de comunicaciones que podemos considerar "puertas" a Internet. Con ello se pueden establecer conexiones con la máquina comprometida desdde cualquier parte de la red de redes.
+            Las puertas traseras, tal y como hemos mencionado, se implementan abriendo puertos de comunicaciones que podemos considerar "puertas" a Internet. Con ello se pueden establecer conexiones con la máquina comprometida desde cualquier parte de la red de redes.
 
             \newpar
 
-            En algunas situaciones el mecanismo de las \textit{backdoors} se empleada para crear \textit{botnets}, cuyo término proviene de la convinación de las palabras inglesas \textit{robot} y \textit{network}. No se trata de más que un conjunto de dispositivos controlados de manera remota. Es similar a un "ejército de máquinas zombies" a las que podemos ordenar tomar una serie de acciones. Los fines de este entramado se centran principalmente en generar ataques de denegación de servicio que impidan el acceso a determinadas páginas web por parte de otras personas. Para ello, hacen uso de la embergadura y capacidad del conjunto para colapsar los servidores de estos sitios efectuando un gran número de solicitudes, desencadenado el bloqueo y la caída de los mismos. Un ejemplo de ello es la \textit{Mirai botnet} que comentábamos en secciones anteriores. También se utilizan estas redes de robots para enviar masivamente los popularmente conocidos correos electrónicos basura o \textit{SPAM}, que no son más que emails con información poco relevante y que, además, pueden suponer un peligro para la seguridad de nuestros aparatos.
+            En algunas situaciones el mecanismo de las \textit{backdoors} se emplea para crear \textit{botnets}, cuyo término proviene de la combinación de las palabras inglesas \textit{robot} y \textit{network}. No se trata de más que un conjunto de dispositivos controlados de manera remota. Es similar a un "ejército de máquinas zombies" a las que podemos ordenar tomar una serie de acciones. Los fines de este entramado se centran principalmente en generar ataques de denegación de servicio que impidan el acceso a determinadas páginas web por parte de otras personas. Para ello, hacen uso de la embergadura y capacidad del conjunto para colapsar los servidores de estos sitios efectuando un gran número de solicitudes, desencadenado el bloqueo y la caída de los mismos. Un ejemplo de ello es la \textit{Mirai botnet} que comentábamos en secciones anteriores. También se utilizan estas redes de robots para enviar masivamente los popularmente conocidos correos electrónicos basura o \textit{SPAM}, que no son más que emails con información poco relevante y que, además, pueden suponer un peligro para la seguridad de nuestros aparatos.
 
         \subsection{Rootkits}
             Los \textit{rootkits} son un tipo de malware que afecta al sistema operativo que se aloja en el ordenador. De este modo, logran modificar la configuración del mismo para posibilitar la presencia de mecanismos maliciosos sin que el usuario de la máquina logre percatarse de ello. Al igual que ocurre con los troyanos, no son capaces de propagarse automáticamente.
 
             \newpar
 
-            Así, esta instancia es capaz de pasar desapercibida por la lista de procesos en funcionamiento e incluso por los propios antivirus. Asimismo son capaces de ocultar los archivos en los que residen y las conexiones de red que establecen con lo que son tremendamente complicados de detectar. Algunos incluso llegan a alojarse en los sectores de arranque del disco con lo que pasa a ser prácticamente imposible eliminarnos... En esos casos un formateo del disco suele ser la única solución con lo que su potencial destructivo es cuanto menos notable.
+            Así, esta instancia es capaz de pasar desapercibida por la lista de procesos en funcionamiento e incluso por los propios antivirus. Asimismo son capaces de ocultar los archivos en los que residen y las conexiones de red que establecen con lo que son tremendamente complicados de detectar. Algunos incluso llegan a alojarse en los sectores de arranque del disco con lo que pasa a ser prácticamente imposible eliminarlos... En esos casos un formateo del disco suele ser la única solución con lo que su potencial destructivo es cuanto menos notable.
 
             \newpar
 
@@ -216,11 +216,11 @@
 
             \newpar
 
-            Distinguimos dos tipos de \textit{rootkit} según su persistencia. Por un lado, tenemos los \textit{rootkit persistentes} que se activan cada vez que se inicia todo el sistema y, por otra parte, los no persistentes, que deesaparecen tras un reinicio. Como cabría esperar el primer tipo es el más complicado de eliminar.
+            Distinguimos dos tipos de \textit{rootkit} según su persistencia. Por un lado, tenemos los \textit{rootkit persistentes} que se activan cada vez que se inicia todo el sistema y, por otra parte, los no persistentes, que desaparecen tras un reinicio. Como cabría esperar el primer tipo es el más complicado de eliminar.
 
             \newpar
 
-            Considerando el modelo de ejecución que implementan encontramos aquellos que se limitan al espacio de usuario mientras que otros tienen por objetivo alojarse en el núcleo del sistema operativo o \textit{kernel}. Dado que esta parte del sistema cuenta con permisos elevados y tiene acceso a todos los recursos los \textit{rootkits} que se alojan aquí tienen el potencial para desatar el caos en la máquina afectada. Para alojarse en el \textit{kernel} los \textit{rootkits} suelen modificar la imagen de éste en memoria a través del archivo \texttt{/dev/kmem} en Linux por ejemplo o hacer uso de los módulos que le podemos insertar a este mismo \textit{kernel}. Para que todo funcione este tipo de malware oculto suele alterar la tabla de llamadas al sistema para entrar en ejecución.
+            Considerando el modelo de ejecución que implementan encontramos aquellos que se limitan al espacio de usuario mientras que otros tienen por objetivo alojarse en el núcleo del sistema operativo o \textit{kernel}. Dado que esta parte del sistema cuenta con permisos elevados y tiene acceso a todos los recursos los \textit{rootkits} que se alojan aquí tienen el potencial para desatar el caos en la máquina afectada. Para alojarse en el \textit{kernel} los \textit{rootkits} suelen modificar la imagen de este en memoria a través del archivo \texttt{/dev/kmem} en Linux por ejemplo o hacer uso de los módulos que le podemos insertar a este mismo \textit{kernel}. Para que todo funcione este tipo de malware oculto suele alterar la tabla de llamadas al sistema para entrar en ejecución.
 
             \newpar
 
@@ -231,11 +231,11 @@
             En cambio, no todo son conductas ilegales ya que se hallan contextos para los que sí son legítimos como, por ejemplo, la supervisión de los empleados de una empresa o corporación, la protección de datos intelectuales o frente a errores humanos como pueden ser borrados accidentales.
 
         \subsection{Drive-by download}
-            El malware oculto de tipo \textit{drive-by download} es uno de los métodos de infeccción más simples que pueden existir. Su simplicidad radica en el hecho de que el usuario que va a ser víctica de él no debe realizar ninguna acción excepcional, pulsar en sitio alguno o aceptar ninguna descarga.
+            El malware oculto de tipo \textit{drive-by download} es uno de los métodos de infeccción más simples que pueden existir. Su simplicidad radica en el hecho de que el usuario que va a ser víctima de él no debe realizar ninguna acción excepcional, pulsar en sitio alguno o aceptar ninguna descarga.
 
             \newpar
 
-            El ataque se materializa cuando el individuo se adentra en una página web y, de manera inmediata y sin que muestre evidencia de ello, se inica la bajada del programa pernicioso.
+            El ataque se materializa cuando el individuo se adentra en una página web y, de manera inmediata y sin que muestre evidencia de ello, se inicia la bajada del programa pernicioso.
 
             \newpar
 
@@ -247,7 +247,7 @@
 
             \newpar
 
-            Las páginas web que contienen estos programas pueden ser accedidas explícitamente por el usuario al ser conocedor de ellas y realizar su busqueda en un navegador web, tal y como puede suceder con entornos de escasa seguridad relacionados con recursos un tanto peculiares como, por ejemplo, la pornografía. Un usuario también puede ser conducido a ellas a través de la recepción de correos electrónicos que le invitan a ello y ventanas emergentes. En este últimos caso, el aspecto familiar y aparentemente inofensivo favorece que la víctima en ningún momento llegue a sospechar de ellas.
+            Las páginas web que contienen estos programas pueden ser accedidas explícitamente por el usuario al ser conocedor de ellas y realizar su búsqueda en un navegador web, tal y como puede suceder con entornos de escasa seguridad relacionados con recursos un tanto peculiares como, por ejemplo, la pornografía. Un usuario también puede ser conducido a ellas a través de la recepción de correos electrónicos que le invitan a ello y ventanas emergentes. En este últimos caso, el aspecto familiar y aparentemente inofensivo favorece que la víctima en ningún momento llegue a sospechar de ellas.
 
             \newpar
 
@@ -270,12 +270,12 @@
                 \label{f:covid_malware}
             \end{figure}
 
-        \subsection{Aplicacones móviles ocultas}
+        \subsection{Aplicaciones móviles ocultas}
             Según un estudio realizado por la compañía \texttt{McAfee} para el año $2019$, las aplicaciones móviles ocultas generaron aproximadamente el $50\%$ de todos los ataques a móviles de ese mismo año. El problema viene dado porque los hackers maliciosos han ido mejorando las formas de ocultar sus ataques, logrando que cada vez sean más difíciles de identificar y eliminar.
 
             \newpar
 
-            Los hackers aprovechan generar versiones falsas de aplicaciones como \texttt{WhatsApp} o \texttt{Spotify} debido al alto impacto de descargas que estás pueden llegar a obtener. De igual forma se aprovechan de la popularidad de algunos juegos para engañar a los usuarios, y es que una vez el cliente haga uso de la \textit{app}, el atacante adquiere la capacidad de controlar todo el dispositivo y muchas veces el usuario ni se da cuenta de que ésto está pasando.
+            Los hackers aprovechan generar versiones falsas de aplicaciones como \texttt{WhatsApp} o \texttt{Spotify} debido al alto impacto de descargas que estás pueden llegar a obtener. De igual forma se aprovechan de la popularidad de algunos juegos para engañar a los usuarios, y es que una vez el cliente haga uso de la \textit{app}, el atacante adquiere la capacidad de controlar todo el dispositivo y muchas veces el usuario ni se da cuenta de que esto está pasando.
 
         \subsection{Troyano Eurograbber}
             Durante el año $2012$, en Europa se vivió bajo la acción de un troyano conocido como \texttt{Eurograbber}. Este ataque ha sido uno de los grandes asaltos informáticos ya que se saldó con la sustracción de $36$ millones de euros en toda Europa, y es que este ataque afectó cerca de unos $30.000$ usuarios de banca de países como Alemania, Italia, Países Bajos y España.
@@ -284,7 +284,7 @@
 
             En España cerca de $11.000$ personas vieron sus cuentas bancarias afectadas, lo que le permitió a los ciberdelincuentes hacerse con un botín estimado de $5,8$ millones de euros. Los ataques por lo general eran realizados a dispositivos que basados en \texttt{Android} y a los de la marca \texttt{BlackBerry} que emplean un sistema operativo propio.
 
-        \subsection{Troyanos en diispositivos móviles}
+        \subsection{Troyanos en dispositivos móviles}
             En el año $2019$ se descubrió la existencia de un troyano oculto en la aplicación de \texttt{Android CamScanner}, la cual cuenta con más de $100$ millones de descargas en la \texttt{Google Play Store}. Este ataque fue descubierto gracias a las investigaciones de la empresa de seguridad \texttt{Kaspersky Lab}.
 
             \newpar
@@ -309,7 +309,7 @@
 
             \newpar
 
-            En el análisis se puede apreciar que la principal vía de ataque es el uso de troyanos siendo el objetivo más común pedir una recompensa por la información que se comprometa. Éstos troyanos suelen haber sido descargados mediante programas de manera oculta o instalados mediante aplicaciones de \texttt{Android}. De igual forma se puede observar en la gráfica de la figura \ref{f:atk_vec} que otros de los principales ataques son por el uso de enlaces malignos para obtener información de los usuarios.
+            En el análisis se puede apreciar que la principal vía de ataque es el uso de troyanos siendo el objetivo más común pedir una recompensa por la información que se comprometa. Estos troyanos suelen haber sido descargados mediante programas de manera oculta o instalados mediante aplicaciones de \texttt{Android}. De igual forma se puede observar en la gráfica de la figura \ref{f:atk_vec} que otros de los principales ataques son por el uso de enlaces malignos para obtener información de los usuarios.
 
             \begin{figure}
                 \centering
@@ -331,35 +331,35 @@
             De esta forma podemos comprobar que el nivel de uso de este tipo de malware oculto en los ciberataques que se realizan durante estos últimos años ha ido aumentado. Es por ello que debemos ser más conscientes de cómo pueden llegar a atacarnos y especialmente conocer de qué manera podemos defendernos y evitar de esta forma ser una de las víctimas.
 
     \section{Demostración: Generando una troyano}
-        Para tratar de afianzar los conceptos aprendidos de la mejor manera posible hemos optado por preparar una pequeña demostración. Creemos que es importante tener primero una visión general de las fases de un ataque remoto para ser capaces de localizar dónde entra un troyano en juego. Nosotros demostraremos una parte mínima de lo que sería un ataque real pero preferimos exponer todo su desarrollo para facilitar la ubicación del lector. Con todo, pasamos a comentar \textit{grosso modo} las fases de aun ataque.
+        Para tratar de afianzar los conceptos aprendidos de la mejor manera posible hemos optado por preparar una pequeña demostración. Creemos que es importante tener primero una visión general de las fases de un ataque remoto para ser capaces de localizar dónde entra un troyano en juego. Nosotros demostraremos una parte mínima de lo que sería un ataque real pero preferimos exponer todo su desarrollo para facilitar la ubicación del lector. Con todo, pasamos a comentar \textit{grosso modo} las fases de un ataque.
 
         \subsection{Desglosando un ataque}
-            \subsubsection{Recoonocimiento}
+            \subsubsection{Reconocimiento}
                 En esta fase nos centraremos en analizar la red en busca de objetivos valiosos para identiificar posibles puntos de ataque y así poder planificar la estrategia. Para poder llevar a cabo esta labor solemos aplicar una serie de técnicas:
 
                 \begin{itemize}
-                    \item \textbf{\textit{Fingerprinting}}: Intentamos averiguar todo lo posiblle sobre la red objetivo a través de consultas en bases de datos como \texttt{WHOIS} que asocian nombres de dominio o direcciones \texttt{IP} a entidades concretas, por ejemplo. Podemos también optaor por navegar por la web dell objetivo, hacer consultas a servidores \texttt{DNS} para así obtener un rango de \texttt{IP}s atacables. Los defensores pueden tratar de mitigar esta recogida de información controlando qué se comparte en el dominio público y aplicando reglas adecuadas en firewalls.
+                    \item \textbf{\textit{Fingerprinting}}: Intentamos averiguar todo lo posible sobre la red objetivo a través de consultas en bases de datos como \texttt{WHOIS} que asocian nombres de dominio o direcciones \texttt{IP} a entidades concretas, por ejemplo. Podemos también optar por navegar por la web del objetivo, hacer consultas a servidores \texttt{DNS} para así obtener un rango de \texttt{IP}s atacables. Los defensores pueden tratar de mitigar esta recogida de información controlando qué se comparte en el dominio público y aplicando reglas adecuadas en firewalls.
                     \item \textbf{\textit{Scanning}}: Escaneamos los puertos de un objetivo para saber qué servicios está corriendo y saber qué opciones tenemos de cara a la incursión. Para prevenirlo debemos permitir acceso a la red solo a paquetes neceseraios.
-                   \item \textbf{Ennumeración}: Una vez identificados los servicios debemos recoger información como pueden ser las versiones o nombres de usuarioi que se emplean. Es por ello que se deben deshabilitar todos los servicios que no se empleen y que sena visibles a la red.
+                   \item \textbf{Enumeración}: Una vez identificados los servicios debemos recoger información como pueden ser las versiones o nombres de usuario que se emplean. Es por ello que se deben deshabilitar todos los servicios que no se empleen y que sean visibles a la red.
                    \item \textbf{\textit{Vulnerability Mapping}}: Una vez descubiertas las versiones y demás información debemos consultar las vulnerabilidades asociadas con las mismas y la manera de explotarlas.
                 \end{itemize}
 
             \subsubsection{Acceso remoto}
-                Tras identifiicar una vullnerabilidad y la forma de sacarle partido (más adelante ahondaremos un poco más en estas definiciones) es hora de intentar acceder al objetivo. Para ello en nuestro caso intentaremos conseguir la ejecución de código remoto, es decir, trataremos de hacer que la víctima ejecute un programa diseñado de tal manera que éste se conecte de vuelta a nosotros para así poder intentar llevar el ataque un paso más allá. Es aquí donde centraremos la mayor parte de la atención en la demostración. Nosotros hemos preparado un programa que genera una puerta trasera en la máquina que se ejecuta. Éste tiene un apariencia aparentemente inofensiva pero nos permitirá acceder remotamente a la víctima. Esto es, en definiitiva, un troyano.
+                Tras identifiicar una vulnerabilidad y la forma de sacarle partido (más adelante ahondaremos un poco más en estas definiciones) es hora de intentar acceder al objetivo. Para ello en nuestro caso intentaremos conseguir la ejecución de código remoto, es decir, trataremos de hacer que la víctima ejecute un programa diseñado de tal manera que este se conecte de vuelta a nosotros para así poder intentar llevar el ataque un paso más allá. Es aquí donde centraremos la mayor parte de la atención en la demostración. Nosotros hemos preparado un programa que genera una puerta trasera en la máquina que se ejecuta. Este tiene un apariencia aparentemente inofensiva pero nos permitirá acceder remotamente a la víctima. Esto es, en definitiva, un troyano.
 
             \subsubsection{Escalada de privilegios}
-                Cuando conseguimos "poner un pie en la puerta" seguramente lo hagamos como un usuario sin permiso alguno. Es por ello que necesitamos de alguna manera acceder a cuentas con permisos que nos permitan hacer más daño al sistema. Los privilegios a conseguir dependen del tipo de ataque que queramos llebvar a cabo, no es necesario lograr coonvertirnos \texttt{root}, esto es, un usuario con permisos totales.
+                Cuando conseguimos "poner un pie en la puerta" seguramente lo hagamos como un usuario sin permiso alguno. Es por ello que necesitamos de alguna manera acceder a cuentas con permisos que nos permitan hacer más daño al sistema. Los privilegios a conseguir dependen del tipo de ataque que queramos llevar a cabo, no es necesario lograr coonvertirnos \texttt{root}, esto es, un usuario con permisos totales.
 
                 \newpar
 
                 En función de nuestro objetivo podemos intentar tratar de mantener este acceso tras la incursión. Para lograrlo deberemos intentar correr nuestra \textit{backdoor} como un servicio o infectar la máquina de alguna otra manera persistente a través de un \textit{rootkit}, por ejemplo. Dado que creemos que no aporta demasiado al tema tratado profundizar en este apartado preferimos mencionarlo y seguir avanzando.
 
             \subsubsection{Eliminación de evidencias}
-                Las acciones que llevamos a cabo se verán reflejadas en el sistema. Es por ello que normalmente queremos tratar de "cubrir nuestras huellas". Para ello deberemos intentar borrar bitácoras o \textit{logs} del sistema como puede ser \texttt{syslog}. Puede que tengamos que eliminar el \textit{log} de servicios como \texttt{Apache}, un servidoor web u otros en función de lo que hayamos hecho. Otro ejemplo de archivo que normalmente querremos destruir es la historia de la \textit{shell} que hayamos empleado como puede ser \texttt{~/.bash\_history} en el caso de \texttt{bash}. Existe una lista más exhaustiva a tener en cuenta en \cite{bib:log_files}.
+                Las acciones que llevamos a cabo se verán reflejadas en el sistema. Es por ello que normalmente queremos tratar de "cubrir nuestras huellas". Para ello deberemos intentar borrar bitácoras o \textit{logs} del sistema como puede ser \texttt{syslog}. Puede que tengamos que eliminar el \textit{log} de servicios como \texttt{Apache}, un servidor web u otros en función de lo que hayamos hecho. Otro ejemplo de archivo que normalmente querremos destruir es la historia de la \textit{shell} que hayamos empleado como puede ser \texttt{~/.bash\_history} en el caso de \texttt{bash}. Existe una lista más exhaustiva a tener en cuenta en \cite{bib:log_files}.
 
             \newpar
 
-            Esperamos haber sido informativos auqnue hayamos deseado dejar la anteior descripción en la mínima expresión. Pasamos pués a describir la demostración que hemos llevado a cabo.
+            Esperamos haber sido informativos aunque hayamos deseado dejar la anteior descripción en la mínima expresión. Pasamos pués a describir la demostración que hemos llevado a cabo.
 
         \subsection{Demostración}
             Aun siendo este trabajo eminentemente teórico hemos querido preparar una demostración práctica que sustente lo ya expuesto. Ya que los términos en los que hemos discutido los conceptos anteriores han sido de carácter general hemos optado por hacer lo mismo en esta demostración. Esto es, en vez de buscar un ataque tremendamente específico hemos escogido uno sencillo que nos permita analizar la base teórica de la que hacen uso de una manera clara y concisa.
@@ -381,7 +381,7 @@
 
                 \newpar
 
-                Dadas las facilidades que nos ofrece hemos escogido Kali Linux para generar los \textit{payload}s (más sobre ellos a continuación) y controlar las máquinas comprometidas. Kali es una distribución que usa Linux como kernel y que se basa en el archiconocida Debian. Sobre esta base robusta se ha instalado una gran cantidad de herramientas comunmente empleadas en muchas áreas de la ciberseguridad como puede sern la ingeniería social, la ruptura de contraseñas, auditoría de redes WiFi... En nuestro caso estamos interesados en Metasploit y sus programas relacionados. Metasploit es un framework que nos permite generar ataques contra vulnerabilidades conocidas de una manera clar y rápida. Dado el soporte que ofrece la firma Rapid7, afincada en Boston, nuevas vulnerabilidades y los ataques que las aprovechan se añaden de manera continua. En definitiva, es una herramienta que permite preparar ataques de una manera rápida y que además ofrece una forma clara de continuar con la post-explotación una vez hemos conseguido acceder a la máquina víctima.
+                Dadas las facilidades que nos ofrece hemos escogido Kali Linux para generar los \textit{payload}s (más sobre ellos a continuación) y controlar las máquinas comprometidas. Kali es una distribución que usa Linux como kernel y que se basa en el archiconocida Debian. Sobre esta base robusta se ha instalado una gran cantidad de herramientas comúnmente empleadas en muchas áreas de la ciberseguridad como puede ser la ingeniería social, la ruptura de contraseñas, auditoría de redes WiFi... En nuestro caso estamos interesados en Metasploit y sus programas relacionados. Metasploit es un framework que nos permite generar ataques contra vulnerabilidades conocidas de una manera clara y rápida. Dado el soporte que ofrece la firma Rapid7, afincada en Boston, nuevas vulnerabilidades y los ataques que las aprovechan se añaden de manera continua. En definitiva, es una herramienta que permite preparar ataques de una manera rápida y que además ofrece una forma clara de continuar con la post-explotación una vez hemos conseguido acceder a la máquina víctima.
 
                 \newpar
 
@@ -426,7 +426,7 @@
 
                 \newpar
 
-                Si bien los lenguajes interpretados como Python están cobrando cada vez más notoriedad en el mundo actual no debemos olvidarnos de las sutilezas que entraña la compilación de programas. Los sistemas operativos se caracterizan por una serie de parámetros como son el \textit{kernel} o núcleo que emplean o la arquitectura para la que están diseñados. Esto implica que programas generados para una plataforma que se sustente sobre Linux no son compatibles con otros que corran sobre Windows NT, el \textit{kernel} del sistema operativo homónimo. Bien es verad que existen interfaces del sistema operativo estñandar como \texttt{POSIX} pero no podemos aventurarnos a asegurar que un programa escrito para Windows corra en otro basado en Linux y viceveresa. Lo que es más, dentro de cada una de las familias anteriores distinguimos arquitecturas impuestas por las características físicas de la máquina, siendo las más típicas la de $64\ bits$ \texttt{(amd64/x64)} y la ya algo obsoleta de 32 bits \texttt{(i386/x86)}. Al igual que antes un programa compilado para una arquitectura no será compatible con la otra.
+                Si bien los lenguajes interpretados como Python están cobrando cada vez más notoriedad en el mundo actual no debemos olvidarnos de las sutilezas que entraña la compilación de programas. Los sistemas operativos se caracterizan por una serie de parámetros como son el \textit{kernel} o núcleo que emplean o la arquitectura para la que están diseñados. Esto implica que programas generados para una plataforma que se sustente sobre Linux no son compatibles con otros que corran sobre Windows NT, el \textit{kernel} del sistema operativo homónimo. Bien es verdad que existen interfaces del sistema operativo estándar como \texttt{POSIX} pero no podemos aventurarnos a asegurar que un programa escrito para Windows corra en otro basado en Linux y viceveresa. Lo que es más, dentro de cada una de las familias anteriores distinguimos arquitecturas impuestas por las características físicas de la máquina, siendo las más típicas la de $64\ bits$ \texttt{(amd64/x64)} y la ya algo obsoleta de 32 bits \texttt{(i386/x86)}. Al igual que antes un programa compilado para una arquitectura no será compatible con la otra.
 
                 \newpar
 
@@ -446,11 +446,11 @@
                 \end{center}
                 
 
-                Con lo anterior estamos generando el \textit{payload} \texttt{win\_pyld.exe}. La arquitectura y plataforma de este programa vienen dadas por las opciones \texttt{-a} y \texttt{--platform} respectivamente. Consultando los valores pasados vemos que se trata de una máquina que ejecuta la versión de 64 bits de Windows. Asimismo, el tipo de \textit{payload} seleccionado es \texttt{windows/x64/meterpreter/reverse\_tcp}. En la siguiente sección comentaremos el funcionamiento de la misma. Dado el \textit{payload} escogido debemos pasar dos opciones que se introducirán en el código del mismo. En este caso son la IP (\texttt{LHOST}) y el puerto (\texttt{LPORT}) de la máquina atacante. En secciones subsiguientes estudiaremos por qué son necesarias estas opciones. Finalmente especificamos el formato del \textit{payload} generado con la opción \texttt{-f}. Dado que el formato estándar de los archivos ejecutables en Windows. Este archivo generado tendrá, ademas del programa propiamente dicho, las instrucciones necesarias para que el loader de Windows lo cargue correctamente.
+                Con lo anterior estamos generando el \textit{payload} \texttt{win\_pyld.exe}. La arquitectura y plataforma de este programa vienen dadas por las opciones \texttt{-a} y \texttt{--platform} respectivamente. Consultando los valores pasados vemos que se trata de una máquina que ejecuta la versión de 64 bits de Windows. Asimismo, el tipo de \textit{payload} seleccionado es \texttt{windows/x64/meterpreter/reverse\_tcp}. En la siguiente sección comentaremos el funcionamiento de la misma. Dado el \textit{payload} escogido debemos pasar dos opciones que se introducirán en el código del mismo. En este caso son la IP (\texttt{LHOST}) y el puerto (\texttt{LPORT}) de la máquina atacante. En secciones subsiguientes estudiaremos por qué son necesarias estas opciones. Finalmente especificamos el formato del \textit{payload} generado con la opción \texttt{-f}. Dado que el formato estándar de los archivos ejecutables en Windows. Este archivo generado tendrá, además del programa propiamente dicho, las instrucciones necesarias para que el loader de Windows lo cargue correctamente.
 
                 \newpar
 
-                Como ya comentamos anteriormente, uno de los mecanismos más comunes para detectar malware es la comparación de archivos sospechosos con firmas almacenadas en bases de datos que se han asociado a algún archivo malicioso. Con la orden anterior hemos generado el \textit{payload} sin intentar ocultarlo de ninguna manera. Más adelante comentaremos como, a traves de un proceso denominado codificación, podemos intentar ocultar este programa malicioso para así inhibir o al menos dificultar el trabajo de los antivirus.
+                Como ya comentamos anteriormente, uno de los mecanismos más comunes para detectar malware es la comparación de archivos sospechosos con firmas almacenadas en bases de datos que se han asociado a algún archivo malicioso. Con la orden anterior hemos generado el \textit{payload} sin intentar ocultarlo de ninguna manera. Más adelante comentaremos como, a través de un proceso denominado codificación, podemos intentar ocultar este programa malicioso para así inhibir o al menos dificultar el trabajo de los antivirus.
 
                 \newpar
 
@@ -469,26 +469,26 @@
 
                 \newpar
 
-                Una vez que se haya ejecutado el programa malicioso en la víctima debemos aceptar la conexión de vuelta y poner todo a funcionar. Para ello haremos uso de la consola de metasploit a través del comando \texttt{msfconsole}. Debemos configurar nuestra sesión para que acepte la conexión que esperamos y descargue a través de ésta la shell que deseamos ejecutar en la máquina atacante. Al fin y al cabo lo que queremos lograr es tener una sesión en la víctima que nos permita controlarla.
+                Una vez que se haya ejecutado el programa malicioso en la víctima debemos aceptar la conexión de vuelta y poner todo a funcionar. Para ello haremos uso de la consola de metasploit a través del comando \texttt{msfconsole}. Debemos configurar nuestra sesión para que acepte la conexión que esperamos y descargue a través de esta la shell que deseamos ejecutar en la máquina atacante. Al fin y al cabo lo que queremos lograr es tener una sesión en la víctima que nos permita controlarla.
 
                 \newpar
 
-                Al igual que hicimos con la generación del \textit{payload} hemos automatizado el proceso a través de un script en bash que está enteramente comentado (\texttt{troj\_c\_n\_c.sh}). Tras lanzarlo esperaremos la conexión del \textit{payload} una vez se ejecute y pasaremos a tener automáticamente un indcutor (prompt) esperando órdenes para ejecutar en la víctima.
+                Al igual que hicimos con la generación del \textit{payload} hemos automatizado el proceso a través de un script en bash que está enteramente comentado (\texttt{troj\_c\_n\_c.sh}). Tras lanzarlo esperaremos la conexión del \textit{payload} una vez se ejecute y pasaremos a tener automáticamente un inductor (prompt) esperando órdenes para ejecutar en la víctima.
 
                 \newpar
 
-                Si bien tenemos shells tradicionales como bash, zsh o ksh en este caso estamos tratando con un entorno totalmente distinto. Si recordamos el nombre del \textit{payload} y nos quemos con la última parte (\texttt{meterpreter/reverse\_tcp}) veremos que nuestro \textit{payload} se puede desglosar en dos partes:
+                Si bien tenemos shells tradicionales como bash, zsh o ksh en este caso estamos tratando con un entorno totalmente distinto. Si recordamos el nombre del \textit{payload} y nos quedamos con la última parte (\texttt{meterpreter/reverse\_tcp}) veremos que nuestro \textit{payload} se puede desglosar en dos partes:
 
                 \begin{itemize}
                     \item \textit{Stager}: \texttt{reverse\_tcp} -- Se encarga de la conexión de vuelta a la máquina atacante
                     \item \textit{Stage}: \texttt{meterpreter} -- Shell a ejecutar
                 \end{itemize}
 
-                Vemos pues que el inductor que aparece en el atacante pertence a esta shell. La forma de cargar esta shell en memoria es a través de la inyección del código descargado en el espacio de memoria del proceso que ya generó la conexión de vuelta. Es decir, en una primera instance el stager se conecta de vuelta al cenctro de control (máquina atacante). Al ejecutarse este \textit{payload} se genera un proceso, como en cualquier otra ocasión. Tras descargarse el código compilado de meterpreter éste se carga en el espacio de memoria del proceso y pasamos a ejecutar la shell que recibimos de vuelta.
+                Vemos pues que el inductor que aparece en el atacante pertenece a esta shell. La forma de cargar esta shell en memoria es a través de la inyección del código descargado en el espacio de memoria del proceso que ya generó la conexión de vuelta. Es decir, en una primera instance el stager se conecta de vuelta al cenctro de control (máquina atacante). Al ejecutarse este \textit{payload} se genera un proceso, como en cualquier otra ocasión. Tras descargarse el código compilado de meterpreter este se carga en el espacio de memoria del proceso y pasamos a ejecutar la shell que recibimos de vuelta.
 
                 \newpar
 
-                Vemos pues quel el proceso implica una serie de pasos a pesar de ser relativamente sencillo. Al tratarse de un entorno totalmente nuevo tenemos una gran cantidad de herramientas y órdenas que nos permitirán recabar la información que estemos buscando.
+                Vemos pues que el proceso implica una serie de pasos a pesar de ser relativamente sencillo. Al tratarse de un entorno totalmente nuevo tenemos una gran cantidad de herramientas y órdenas que nos permitirán recabar la información que estemos buscando.
 
                 \newpar
 
@@ -510,11 +510,11 @@
 
                 \newpar
 
-                La forma de lograr este comportamiento es cifrar las instrucciones del propio \textit{payload} con una clave que se aplica en el momento de la ejecución con lo que la firma no es sospechosa. El primer paso de la ejecución es obtener el contador del programa para saber dónde se está ejecutando actualmente el programa malicioso para así poder modificar futuras referencias a memoria y así desenredar el "bicho" en tiempo real. Esta técnica podría incuso peritir a su usuario cambiar de forma o mutar en tiempo real con lo que los efectos del malware podrían multiplicarse.
+                La forma de lograr este comportamiento es cifrar las instrucciones del propio \textit{payload} con una clave que se aplica en el momento de la ejecución con lo que la firma no es sospechosa. El primer paso de la ejecución es obtener el contador del programa para saber dónde se está ejecutando actualmente el programa malicioso para así poder modificar futuras referencias a memoria y así desenredar el "bicho" en tiempo real. Esta técnica podría incuso permitir a su usuario cambiar de forma o mutar en tiempo real con lo que los efectos del malware podrían multiplicarse.
 
                 \newpar
 
-                Este campo resulta sin duda interesante pero dado que solo queríamos preparar una pequeña demostración nos hemos visto obligados a solo mencionarlo. Esperamos haber sido claros exponiendo los conceptos y los pasos para reeproducir el ataque. A nosotros sin duda nos ha servido para comprender mejor el funcionamiento interno de este tipo de malware. Con todo, nos queda estudiar cómo detectar y prevenir este tipo de ataques.
+                Este campo resulta sin duda interesante pero dado que solo queríamos preparar una pequeña demostración nos hemos visto obligados a solo mencionarlo. Esperamos haber sido claros exponiendo los conceptos y los pasos para reproducir el ataque. A nosotros sin duda nos ha servido para comprender mejor el funcionamiento interno de este tipo de malware. Con todo, nos queda estudiar cómo detectar y prevenir este tipo de ataques.
 
     \section{Detección de malware oculto}
         Existen varias maneras de poder detectar cuándo un software malicioso se ha introducido en un sistema o equipo determinado. A continuación mencionamos las más importantes.
@@ -525,13 +525,13 @@
             Este modo de detección compara la “firma” de los archivos a analizar con una base de datos y si hay coincidencia, el archivo es identificado como malware. Existen tres tipos de firmas.
 
             \subsubsection{Archivos completos}
-                Se computa un \textit{fingerprint} del archivo completo usando un hash criptográfico como, por ejemplo, \texttt{SHA-1} y se compara con los hashes de las firmas almacenados en una base de datos. Debido a las características de estos hashes, el mínimo cambio en el archivo de entrada cambiaría por completo el \textit{fingerprint} resultante debido al efecto "avalancha" que se busca en el diseño de este tipo de funciones digestivas. Ésto impedirá en gran medida que las comparaciones resulten en falsos positivos, esto es, que parezca malware algo que no lo es, ya que es prácticamente imposible que dos archivos distintos generen el mismo \textit{fingerprint}. Por lo tanto los malwares pueden ser detectados de manera rápida y eficaz.
+                Se computa un \textit{fingerprint} del archivo completo usando un hash criptográfico como, por ejemplo, \texttt{SHA-1} y se compara con los hashes de las firmas almacenados en una base de datos. Debido a las características de estos hashes, el mínimo cambio en el archivo de entrada cambiaría por completo el \textit{fingerprint} resultante debido al efecto "avalancha" que se busca en el diseño de este tipo de funciones digestivas. Esto impedirá en gran medida que las comparaciones resulten en falsos positivos, esto es, que parezca malware algo que no lo es, ya que es prácticamente imposible que dos archivos distintos generen el mismo \textit{fingerprint}. Por lo tanto los malwares pueden ser detectados de manera rápida y eficaz.
 
             \subsubsection{Archivos parciales}
                 A diferencia del caso anterior, el \textit{fingerprint} se computará sólo de ciertas secciones del archivo. En los archivos de malware hay secciones que no tienen tanta relevancia y pueden ser modificadas fácilmente por lo que el análisis se centra en las secciones críticas del funcionamiento del malware para así ser capaces de detectar variantes de malware de manera eficaz.
 
             \subsubsection{Firmas de cadenas}
-                Siguiendo el mecanismo de las anteriores firmas se analizarán las posibles cadenas de caracteres y se compararán con la base de datos. Este método no es muy eficaz con malware oculto ya que no suelee interactuar con el usuario, pero con malware como el \texttt{Stone virus} que contiene una cadena diciendo \textit{Your PC is now stoned} un archivo con esa cadena puede ser identificado como posible malware. No obstante se tendrán más características en cuenta para determinar que es efectivamente malware.
+                Siguiendo el mecanismo de las anteriores firmas se analizarán las posibles cadenas de caracteres y se compararán con la base de datos. Este método no es muy eficaz con malware oculto ya que no suele interactuar con el usuario, pero con malware como el \texttt{Stone virus} que contiene una cadena diciendo \textit{Your PC is now stoned} un archivo con esa cadena puede ser identificado como posible malware. No obstante se tendrán más características en cuenta para determinar que es efectivamente malware.
 
             \subsubsection{Ventajas e inconvenientes}
                 La detección basada en firmas es una técnica muy fácil de implementar y gracias a la utilización de hashes criptográficos es muy eficaz a la hora de encontrar amenazas conocidas por lo que su tasa de falsos positivos es bajísima.
@@ -556,13 +556,13 @@
             La detección de malware utilizando análisis heurísticos fue creada para superar las desventajas encontradas en la detección por firmas o basada en el comportamiento. Los métodos usados para ello son el procesamiento de datos y las técnicas de aprendizaje automáticas para comprender el comportamiento de un ejecutable. Las características de este tipo de detección se pueden dividir generalmente en cuatro bloques.
 
             \subsubsection{Llamadas a servicios del sistema operativo}
-                Casi todos los programas usan llamadas a la \texttt{API} que ofrece el sistema operativo. Las secuencias de peticiones de servicio se comportan como fragmentos de código malware. \textit{Hofmeyr} fue de los primeros que consideró estas secuencias como características de malware \cite{bib:malware_calls} por lo cual se desarrolló una detección basada en llamadas al sistema. La distancia de \textit{Haming}, que es el número mínimo de sustituciones que se tienen que efectuar sobre una cadena para que sea idéntica a otra, fue utilizado para comparar las secuencias de llamadas a al sistema y poder clasificar las muestras como malware. Destcamos, a modo de curiosidad, que esta misma definición de distancia es la que se apalica en los sistemas de escáner retinal que implementan el control de acceso de muchos edificios.
+                Casi todos los programas usan llamadas a la \texttt{API} que ofrece el sistema operativo. Las secuencias de peticiones de servicio se comportan como fragmentos de código malware. \textit{Hofmeyr} fue de los primeros que consideró estas secuencias como características de malware \cite{bib:malware_calls} por lo cual se desarrolló una detección basada en llamadas al sistema. La distancia de \textit{Haming}, que es el número mínimo de sustituciones que se tienen que efectuar sobre una cadena para que sea idéntica a otra, fue utilizado para comparar las secuencias de llamadas al sistema y poder clasificar las muestras como malware. Destacamos, a modo de curiosidad, que esta misma definición de distancia es la que se aplica en los sistemas de escáner retinal que implementan el control de acceso de muchos edificios.
 
             \subsubsection{Código operacional}
                 El código operacional consiste en la subdivisión de lenguaje de instrucciones de máquina que identifica la operación a realizar. Un programa está definido por una serie de instrucciones de ensamblador. \textit{Bilar} mostró la habilidad de utilizar código operacional como características en la detección de malware, analizó y demostró la alta fiabilidad para detectar amenazas de un ejecutable \cite{bib:malware_asm}. Hay varios tipos de detección de malware basadas en código operacional como por ejemplo un enfoque centrado en detectar variantes de malware ofuscado. Normalmente el procedimiento es descomponer el ejecutable en instrucciones de ensamblador y calcular la relevancia de estas instrucciones. Basándose en la técnica de frecuencia-peso de término se construye un vector que representa las características del ejecutable para poder ser estudiado como posible amenaza. También es posible detectar malware desconocido  y metamórfico basado en gráficas de medición de similitud. Para poder llevar a cabo esta técnica de detección basada en código operacional se extrae código operacional de archivos benignos y malwares y se compara el código operacional de ambos.
 
             \subsubsection{Diagramas de flujo}
-                Los diagramas de flujo son representaciones gráficas que describen el funcionamiento de un algoritmo o proceso. Están compuestos por nodos que representan una instrucción del programa y de líneas que muestran el flujo de control entre instrucciones. Se puede detectar malware a través del uso del diagramas de flujo \cite{bib:malware_calls} mediante un conjunto de operaciones de normalización realizadas después de “desmontar” el ejecutable para reducir el efecto de tecnicas de mutacion y poder desvelar conexiones de flujo entre código benigno y malware. Se crea un diagrama de flujo que se comparará con diagramas de flujos de malware normalizado.
+                Los diagramas de flujo son representaciones gráficas que describen el funcionamiento de un algoritmo o proceso. Están compuestos por nodos que representan una instrucción del programa y de líneas que muestran el flujo de control entre instrucciones. Se puede detectar malware a través del uso del diagramas de flujo \cite{bib:malware_calls} mediante un conjunto de operaciones de normalización realizadas después de “desmontar” el ejecutable para reducir el efecto de técnicas de mutación y poder desvelar conexiones de flujo entre código benigno y malware. Se crea un diagrama de flujo que se comparará con diagramas de flujos de malware normalizado.
 
                 \newpar
 
@@ -570,22 +570,22 @@
 
                 \newpar
 
-                Los diagramas de flujo pueden ser incluso utilizados como firmas de detección. Como se ha mencionado los diagramas de flujo está compuesto por nodos y líneas de flujo y como sabemos el flujo de todo lenguaje ensamblador se controla con cuatro tipo de instrucciones elementales: saltos condicionales, saltos incondicionales, llamadas a función y retorno de llamadas. \textit{Bosfante} \cite{bib:malware_nodes} abstrajo cualquier secuencia de instrucciones seguidas en un nuevo nodo llamado \textit{inst} y al final del programa se creó otro nodos denominado \textit{end}. Utilizando estos seis nodos se construye un diagrama de flujo del ejecutable. Para reducir el tamaño del diagrama de flujo los nodos de salto incondicional y los nodos \textit{inst} son eliminados y se enlazan los nodos que estuvieran unidos por los eliminados. El resultado se utilizara como una firma.
+                Los diagramas de flujo pueden ser incluso utilizados como firmas de detección. Como se ha mencionado los diagramas de flujo están compuestos por nodos y líneas de flujo y como sabemos el flujo de todo lenguaje ensamblador se controla con cuatro tipo de instrucciones elementales: saltos condicionales, saltos incondicionales, llamadas a función y retorno de llamadas. \textit{Bosfante} \cite{bib:malware_nodes} abstrajo cualquier secuencia de instrucciones seguidas en un nuevo nodo llamado \textit{inst} y al final del programa se creó otro nodos denominado \textit{end}. Utilizando estos seis nodos se construye un diagrama de flujo del ejecutable. Para reducir el tamaño del diagrama de flujo los nodos de salto incondicional y los nodos \textit{inst} son eliminados y se enlazan los nodos que estuvieran unidos por los eliminados. El resultado se utilizara como una firma.
 
             \subsubsection{Características híbridas}
                 Cada bloque previamente estudiado tiene sus propias ventajas e inconvenientes a la hora de detectar malware. Por ejemplo, con el uso de diagramas de flujo se puede detectar fácilmente malware simple pero para detectar malware polimórfico o metamórfico no es suficiente. Es por eso que a la hora de crear un sistema de detección se usa una combinación de los bloques expuestos para obtener un mejor resultado. \textit{Eskandari} \cite{bib:malware_hybrid} creó un sistema que utilizaba diagramas de flujo y llamadas a la \texttt{API} estándar de \texttt{C} en aras de un mejor rendimiento de esta prevención.
 
     \section{Prevención de malware oculto}
-        Existen muchos y muy efectivos métodos de detección de malware que nos ayudan a permanecer seguros y la mayoría son capaces de detectar el malware antes de que éste cause problema alguno. No obstante, como todos sabemos en "mejor prevenir que curar" por lo que poniendo en práctica las siguientes técnicas de prevención de malware creamos una capa de seguridad adicional.
+        Existen muchos y muy efectivos métodos de detección de malware que nos ayudan a permanecer seguros y la mayoría son capaces de detectar el malware antes de que este cause problema alguno. No obstante, como todos sabemos es "mejor prevenir que curar" por lo que poniendo en práctica las siguientes técnicas de prevención de malware creamos una capa de seguridad adicional.
 
         \subsection{Proteger vulnerabilidades}
-            Hoy en día una de las herramientas más usadas a la hora de entregar malware son los \textit{exploit kits} y la manera más eficaz para protegerse contra ellos es tener las aplicaciones y el sistem operativo actualizados. Estas actualizaciones son a menudo lanzadas para parchear vulnerabilidades de seguridad descubiertas. Otra técnica bastante efectiva es habilitar la función \textit{click-to-play} que proporcionan plugins para navegadores. Esto se debe a que de estar deshabilitada esta función y, empleando anuncios maliciosos, algunos \textit{exploit kits} pueden introducirse en un sistema sin mediación alguna del usuario. Es también vital evitar la utilización de sistemas operativos que han dejado de tener mantenimiento periódico como por ejemplo \texttt{Windows 7} que este año vio como \texttt{Microsoft} le retiraba el soporte.
+            Hoy en día una de las herramientas más usadas a la hora de entregar malware son los \textit{exploit kits} y la manera más eficaz para protegerse contra ellos es tener las aplicaciones y el sistema operativo actualizados. Estas actualizaciones son a menudo lanzadas para parchear vulnerabilidades de seguridad descubiertas. Otra técnica bastante efectiva es habilitar la función \textit{click-to-play} que proporcionan plugins para navegadores. Esto se debe a que de estar deshabilitada esta función y, empleando anuncios maliciosos, algunos \textit{exploit kits} pueden introducirse en un sistema sin mediación alguna del usuario. Es también vital evitar la utilización de sistemas operativos que han dejado de tener mantenimiento periódico como por ejemplo \texttt{Windows 7} que este año vio como \texttt{Microsoft} le retiraba el soporte.
 
         \subsection{Cuidado con la ingeniería social}
-            La estafa a través de técnicas de ingeniería social es otro metodo de infeccion muy utilizado en la actualidad. Ejemplos de este tipo de tácticas son correo electrónicos con apariencia inofensiva, campañas social sospechosa o incluso llamadas del soporte técnico de tu sistema operativo. Estando alerta de las siguientes tácticas de ingeniería social se puede prevenir ser engañado.
+            La estafa a través de técnicas de ingeniería social es otro metodo de infección muy utilizado en la actualidad. Ejemplos de este tipo de tácticas son correos electrónicos con apariencia inofensiva, campañas social sospechosas o incluso llamadas del soporte técnico de tu sistema operativo. Estando alerta de las siguientes tácticas de ingeniería social se puede prevenir ser engañado.
 
             \begin{itemize}
-                \item Leer emails meticulosamente: La suplantación de identidad a través de un correo electrónico es exitosa sólo cuando los lectores no prestan atención o no saben en qué fijarse. Comprobando que la dirección de correo esté verificada, que los enlaces de redireccionamiento llevan a páginas oficiales, que no solicitan información privada por medios no seguros podemos estar bastanbte seguros de si el correo es o no legítimo.
+                \item Leer emails meticulosamente: La suplantación de identidad a través de un correo electrónico es exitosa sólo cuando los lectores no prestan atención o no saben en qué fijarse. Comprobando que la dirección de correo esté verificada, que los enlaces de redireccionamiento llevan a páginas oficiales, que no solicitan información privada por medios no seguros podemos estar bastante seguros de si el correo es o no legítimo.
                 \item Instalar programas falsos: Debemos ignorar los \textit{pop-ups} que ofrezcan ayuda contra malware mediante una aplicación no oficial ya que empresas reales de seguridad nunca se promociona mediante estas estrategias y menos alertando de que han detectado que estas infectado cuando ni siquiera tienes su aplicación instalada.
             \end{itemize}
 
@@ -634,7 +634,7 @@
 
                     \begin{enumerate}
                         \item \textbf{Alarmas y notificaciones}: \textit{Pop-ups}, notificaciones remotas a teléfonos móviles o buscas y notificación vía e-mail \textbf{desaconsejada??}. Programas como \texttt{Grafana} permiten construir paneles de control visuales que facilitan esta labor.
-                        \item \textbf{Traps SNMP}: Algunos \texttt{IDS} generan alarmas y las envían a centrales de gestión de red. Para ello hace uso del protocolo de gestión \texttt{SNMP} que cuenta con un mecanismo de notificaciones asíncronas de los agentes controlados al controlador. Esto son, en efecto, las \textit{traps} que comentábamos. Ésto peprmite adaptar toda la infraestructura de red ante un ataque y libera al equipo afectado por el ataque de la carga de procesar las acciones de respuesta al mismo.
+                        \item \textbf{Traps SNMP}: Algunos \texttt{IDS} generan alarmas y las envían a centrales de gestión de red. Para ello hace uso del protocolo de gestión \texttt{SNMP} que cuenta con un mecanismo de notificaciones asíncronas de los agentes controlados al controlador. Esto son, en efecto, las \textit{traps} que comentábamos. Esto peprmite adaptar toda la infraestructura de red ante un ataque y libera al equipo afectado por el ataque de la carga de procesar las acciones de respuesta al mismo.
                     \end{enumerate}
 
             \subsubsection{Detalles varios de los IDS}
@@ -648,7 +648,7 @@
 
                 También se pueden seguir diferentes estrategias de monitorización. Dependiendo del tipo de control puede ser centralizado o distribuido. Se puede detectar anomalías y la mala utilización, a intervalos fijos o en tiempo real. Debemos de ajustar estos detalles adecuadamente para cumplir nuestros objetivos.
 
-                \newapr
+                \newpar
 
                 Un punto a tener en cuenta cuando se utiliza un \texttt{IDS} es su tolerancia a fallos e invisibilidad. Un atacante no debería poder identificar al \texttt{IDS}, puesto que lo atacarían directamente. Por lo que las respuestas no deben alertarlos. El uso de criptografía y túneles cifrados hará más difícil que un posible atacante detecte las alertas generadas por el \texttt{IDS} y actúe en consecuencia.
 
@@ -685,7 +685,7 @@
                 La escalabilidad es alta ya que podemos controlar una red de gran tamaño sin demasiadas máquinas. Esta estrategia presenta un bajo impacto en el funcionamiento de la red y la seguridad que logramos es elevada ya que estas máquinas dedicadas suelene ser invisibles a los atacantes.
 
             \subsubsection{Inconvenientes}
-                La eficiencia suele ser un problema ya que es difícil analizar grandes cantidades de tráfico. Asimismo, el acceso a información de las redes de circuitos conmutados es más complicado y este tipo de \texttt{IDS} no puede analizar información cifrada a nivel de red. Además, no detectan el resultado del ataque una vez que éste ha sucedido y pueden tener problemas con la fragmentación de datagramas \texttt{IP} ya que ésto dificulta recomponer el tráfico.
+                La eficiencia suele ser un problema ya que es difícil analizar grandes cantidades de tráfico. Asimismo, el acceso a información de las redes de circuitos conmutados es más complicado y este tipo de \texttt{IDS} no puede analizar información cifrada a nivel de red. Además, no detectan el resultado del ataque una vez que este ha sucedido y pueden tener problemas con la fragmentación de datagramas \texttt{IP} ya que esto dificulta recomponer el tráfico.
 
                 \newpar
 
@@ -725,6 +725,6 @@
     \section{Conclusión}
 
     \section{Bibliografía}
-        \bibliographytyle{plain}
-        \bibliography{bibtex_refs}{}
+        %\bibliographytyle{plain}
+        %\bibliography{bibtex_refs}{}
 \end{document}
