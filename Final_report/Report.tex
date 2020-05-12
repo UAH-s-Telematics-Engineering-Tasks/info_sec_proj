@@ -15,9 +15,6 @@
     % bib:malware_nodes
     % bib:malware_hybrid -> M. Eskandari and S. Hashemi “Metamorphic malware detection using control flow graph mining”. International Journal of Compute Science Network Security,pp 1-6 ,2011
 
-% TODO:
-    % Comment the scripts!
-
 % Let us cite the bibliography entries
 \usepackage{cite}
 
@@ -41,9 +38,9 @@
 \usepackage{geometry}
 \geometry{
     a4paper,
-    left = 19mm,
-    right = 19mm,
-    top = 15mm,
+    left = 18mm,
+    right = 18mm,
+    top = 14mm,
 }
 
 % Enable fixed-width centered columns
@@ -58,18 +55,16 @@
 % Remove the title page's number
 \usepackage{titling}
 
-\title{Investigación sobre el \texttt{malware} oculto}
-\author{Noelia Díaz-Pinto Morcillo \\ Cristian Camilo Morales Tapias \\ Ricardo Alfonso Casanova Lozano \\ Carlos Ortega Marchamalo \\ Pablo Collado Soto}
+\title{Investigación sobre el \texttt{malware} oculto \thanks{Proudly made with \LaTeX}}
+\author{Noelia Díaz-Pinto Morcillo \\ Cristian Camilo Morales Tapias \\ Ricardo Alfonso Casanova Lozano \\ Carlos Ortega Marchamalo \\ Pablo Collado Soto \\ \\ \textbf{\texttt{Seguridad}} \\ \\ \textbf{Universidad de Alcalá}}
 \date{}
 
 \begin{document}
     \begin{titlingpage}
         \maketitle
-        \newpar
-        \newpar
         \begin{figure}[!htb]
             \centering
-            \includegraphics[width=0.75\linewidth]{cover_pic.jpg}
+            \includegraphics[width=0.6\linewidth]{cover_pic.jpg}
         \end{figure}
     \end{titlingpage}
 
@@ -294,7 +289,7 @@
 
             \begin{figure}
                 \centering
-                \includegraphics[width=\linewidth]{covid_malware.png}
+                \includegraphics[width=0.5\linewidth]{covid_malware.png}
                 \caption{Dominios creadoos entorno al \texttt{COVID-19}}
                 \label{f:covid_malware}
             \end{figure}
@@ -329,7 +324,7 @@
 
             \begin{figure}
                 \centering
-                \includegraphics[width=\linewidth]{cyber_threats.png}
+                \includegraphics[width=0.5\linewidth]{cyber_threats.png}
                 \caption{Aumento de troyanos en los años 2015/2016}
                 \label{f:cyber_threats}
             \end{figure}
@@ -342,7 +337,7 @@
 
             \begin{figure}
                 \centering
-                \includegraphics[width=\linewidth]{atk_vec.png}
+                \includegraphics[width=0.5\linewidth]{atk_vec.png}
                 \caption{Principales vectores de ataque}
                 \label{f:atk_vec}
             \end{figure}
@@ -351,7 +346,7 @@
 
             \begin{figure}
                 \centering
-                \includegraphics[width=\linewidth]{troj_installs.png}
+                \includegraphics[width=0.5\linewidth]{troj_installs.png}
                 \caption{Número de instalaciones de troyanos}
                 \label{f:troj_installs}
             \end{figure}
@@ -395,7 +390,7 @@
 
             \newpar
 
-            Señalamos que los \textit{scripts} comentados que automatizan la tarea se pueden encontrar \href{https://github.com/UAH-s-Telematics-Engineering-Tasks/info_sec_proj}{en nuestro repositorio de \texttt{GitHub}}. No hemos incluido el código en este informe ya que creemos que sería poco práctico y reduciría enormemente el espacio del que disponemos para comentar nuestra investigación y puesta en práctica de la materia.
+            Señalamos que los \textit{scripts} comentados que automatizan la tarea se pueden encontrar \href{https://github.com/UAH-s-Telematics-Engineering-Tasks/info_sec_proj/scripts}{en nuestro repositorio de \texttt{GitHub}}. No hemos incluido el código en este informe ya que creemos que sería poco práctico y reduciría enormemente el espacio del que disponemos para comentar nuestra investigación y puesta en práctica de la materia.
 
             \newpar
 
@@ -405,7 +400,7 @@
 
             Creemos que con lo anterior hemos logrado demostrar las características básicas de este tipo de ataques que suelen ser, además, el primer paso en una cadena mucho más compleja.
 
-            \subsubsection{Trabajando con Kali}
+            \subsubsection{Trabajando con \texttt{Kali}}
                 Nuestro objetivo con esta sección no es solo analizar el funcionamiento de los troyanos sino también brindar una pequeña "guía" que permita a cualquiera recrear nuestras pruebas. Es por ello que es necesario describir el sistema con el que se ha generado todo.
 
                 \newpar
@@ -593,11 +588,11 @@
                 El código operacional consiste en la subdivisión de lenguaje de instrucciones de máquina que identifica la operación a realizar. Un programa está definido por una serie de instrucciones de ensamblador. \textit{Bilar} mostró la habilidad de utilizar código operacional como características en la detección de malware, analizó y demostró la alta fiabilidad para detectar amenazas de un ejecutable \cite{bib:malware_asm}. Hay varios tipos de detección de malware basadas en código operacional como por ejemplo un enfoque centrado en detectar variantes de malware ofuscado. Normalmente el procedimiento es descomponer el ejecutable en instrucciones de ensamblador y calcular la relevancia de estas instrucciones. Basándose en la técnica de frecuencia-peso de término se construye un vector que representa las características del ejecutable para poder ser estudiado como posible amenaza. También es posible detectar malware desconocido  y metamórfico basado en gráficas de medición de similitud. Para poder llevar a cabo esta técnica de detección basada en código operacional se extrae código operacional de archivos benignos y malwares y se compara el código operacional de ambos.
 
             \subsubsection{Diagramas de flujo}
-                Los diagramas de flujo son representaciones gráficas que describen el funcionamiento de un algoritmo o proceso. Están compuestos por nodos que representan una instrucción del programa y de líneas que muestran el flujo de control entre instrucciones. Se puede detectar malware a través del uso del diagramas de flujo \cite{bib:malware_calls} mediante un conjunto de operaciones de normalización realizadas después de “desmontar” el ejecutable para reducir el efecto de técnicas de mutación y poder desvelar conexiones de flujo entre código benigno y malware. Se crea un diagrama de flujo que se comparará con diagramas de flujos de malware normalizado.
+                Los diagramas de flujo son representaciones gráficas que describen el funcionamiento de un algoritmo o proceso. Están compuestos por nodos que representan una instrucción del programa y de líneas que muestran el flujo de control entre instrucciones. Se puede detectar malware a través del uso del diagramas de flujo \cite{bib:malware_flow} mediante un conjunto de operaciones de normalización realizadas después de “desmontar” el ejecutable para reducir el efecto de técnicas de mutación y poder desvelar conexiones de flujo entre código benigno y malware. Se crea un diagrama de flujo que se comparará con diagramas de flujos de malware normalizado.
 
                 \newpar
 
-                \textit{Zhao} \cite{bib:malware_asm} propuso un método de detección de malware utilizando diagramas de flujo. Primero obtiene el diagrama siguiendo los pasos previos, a continuación utiliza las características obtenidas como información de los nodos, líneas de flujos y sub-flujos para utilizar un algoritmo de procesamiento de datos como \cite{bib:malware_f_a}, \cite{bib:malware_f_b} o \cite{bib:malware_f_b}.
+                \textit{Zhao} \cite{bib:malware_graphs} propuso un método de detección de malware utilizando diagramas de flujo. Primero obtiene el diagrama siguiendo los pasos previos, a continuación utiliza las características obtenidas como información de los nodos, líneas de flujos y sub-flujos para utilizar un algoritmo de procesamiento de datos como \cite{bib:malware_f_a, bib:malware_f_b, bib:malware_f_c}.
 
                 \newpar
 
@@ -754,8 +749,27 @@
                 Los \texttt{logs} de las aplicaciones están menos protegidos. Trabajan en espacio de usuario y no son capaces de detectar troyanos.
 
     \section{Conclusión}
+        Dentro de los diversos ataques que pueden afectar a nuestros sistemas, el de malware oculto es uno de los más utilizados y peligrosos debido a su capacidad de pasar desapercibido. Pueden acceder a través de un archivo descargado de apariencia inofensivo como es el caso de los troyanos para infectar y conseguir crear un backdoor que permita un posterior acceso al sistema o máquina por parte del atacante.
 
+        \newpar
+
+        En ocasiones, ni siquiera hace falta descargar un elemento de forma consciente de \texttt{Internet} como en el caso de los \textit{drive-by download}, que aprovechan las webs donde está escondido su código para realizar la descarga de malware de forma camuflada.
+
+        \newpar
+
+        Hay diversas maneras de detectar este tipo de malware que se pueden compaginar para garantizar su éxito. No obstante, lo más importante es la prevención puesto que este tipo de malware puede ser muy complicado de eliminar incluso una vez detectados. Este es el caso de los \textit{rootkit}, por ejemplo. Para ello es imprescindible tener las directrices de seguridad esocgidas bien implementadas además de contar con unas aplicaciones actualizadas y un sistema operativo al día y con sus correspondientes parches de seguridad instalados.
+
+        \newpar
+
+        Asimismo, nunca debemos olvidar que por muchas medidas que tomemos el usuario suele ser el eslabón más débil de todo el sistema. Por ello tendremos que concienciar a toda aquella persona que emplee nuestro sistema si deseamos mantener un entorno tan seguro como nos sea posible.
+
+        \newpar
+
+        Esperamos haber sido capaces de condensar una gran cantidad de información de una manera hábil y liviana. Nosotros desde luego vemos la seguridad en general y el malware en particular desde una perspectiva radicalmente disitinta.
+
+    % Bibliography page
     \newpage
+
     % Make uncited entries appear!
     \nocite{*}
     \bibliographystyle{plain}
