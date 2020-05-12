@@ -470,7 +470,7 @@
                 \end{center}
                 
 
-                Con lo anterior estamos generando el \textit{payload} \texttt{win\_pyld.exe}. La arquitectura y plataforma de este programa vienen dadas por las opciones \texttt{-a} y \texttt{--platform} respectivamente. Consultando los valores pasados vemos que se trata de una máquina que ejecuta la versión de 64 bits de Windows. Asimismo, el tipo de \textit{payload} seleccionado es \texttt{windows/x64/meterpreter/reverse\_tcp}. En la siguiente sección comentaremos el funcionamiento de la misma. Dado el \textit{payload} escogido debemos pasar dos opciones que se introducirán en el código del mismo. En este caso son la IP (\texttt{LHOST}) y el puerto (\texttt{LPORT}) de la máquina atacante. En secciones subsiguientes estudiaremos por qué son necesarias estas opciones. Finalmente especificamos el formato del \textit{payload} generado con la opción \texttt{-f}. Dado que el formato estándar de los archivos ejecutables en Windows. Este archivo generado tendrá, además del programa propiamente dicho, las instrucciones necesarias para que el loader de Windows lo cargue correctamente.
+                Con lo anterior estamos generando el \textit{payload} \texttt{win\_pyld.exe}. La arquitectura y plataforma de este programa vienen dadas por las opciones \texttt{-a} y \texttt{--platform} respectivamente. Consultando los valores pasados vemos que se trata de una máquina que ejecuta la versión de 64 bits de Windows. Asimismo, el tipo de \textit{payload} seleccionado es \texttt{windows/x64/meterpreter/reverse\_tcp}. En la siguiente sección comentaremos el funcionamiento de la misma. Dado el \textit{payload} escogido debemos pasar dos opciones que se introducirán en el código del mismo. En este caso son la IP (\texttt{LHOST}) y el puerto (\texttt{LPORT}) de la máquina atacante. En secciones subsiguientes estudiaremos por qué son necesarias estas opciones. Finalmente especificamos el formato del \textit{payload} generado con la opción \texttt{-f}. Dado que \texttt{.exe} es el formato estándar de los archivos ejecutables en Windows es el que escogeremos. Este archivo generado tendrá, además del programa propiamente dicho, las instrucciones necesarias para que el loader de Windows lo cargue correctamente.
 
                 \newpar
 
@@ -489,7 +489,7 @@
 
                 \newpar
 
-                Ahora bien, este \textit{payload} debe saber cómo conectarse de vuelta a la máquina atacante. Es aquí donde entran en juego las opciones \texttt{LHOST} y \texttt{LPORT} que se encargan de identificar a la máquina atacante a través de su dirección IP (\texttt{LHOST}) así como al programa que espera recibir la conexión del \textit{payload} a través de un número de puerto (`LPORT`). En el fondo este \textit{payload} resulta ser, desde un punto de vista general, tremendamente sencillo.
+                Ahora bien, este \textit{payload} debe saber cómo conectarse de vuelta a la máquina atacante. Es aquí donde entran en juego las opciones \texttt{LHOST} y \texttt{LPORT} que se encargan de identificar a la máquina atacante a través de su dirección IP (\texttt{LHOST}) así como al programa que espera recibir la conexión del \textit{payload} a través de un número de puerto (\texttt{LPORT}). En el fondo este \textit{payload} resulta ser, desde un punto de vista general, tremendamente sencillo.
 
                 \newpar
 
@@ -508,7 +508,7 @@
                     \item \textit{Stage}: \texttt{meterpreter} -- Shell a ejecutar
                 \end{itemize}
 
-                Vemos pues que el inductor que aparece en el atacante pertenece a esta shell. La forma de cargar esta shell en memoria es a través de la inyección del código descargado en el espacio de memoria del proceso que ya generó la conexión de vuelta. Es decir, en una primera instance el stager se conecta de vuelta al centro de control (máquina atacante). Al ejecutarse este \textit{payload} se genera un proceso, como en cualquier otra ocasión. Tras descargarse el código compilado de meterpreter este se carga en el espacio de memoria del proceso y pasamos a ejecutar la shell que recibimos de vuelta.
+                Vemos pues que el inductor que aparece en el atacante pertenece a esta shell. La forma de cargar esta shell en memoria es a través de la inyección del código descargado en el espacio de memoria del proceso que ya generó la conexión de vuelta. Es decir, en una primera instancia el \textit{stager} se conecta de vuelta al centro de control (máquina atacante). Al ejecutarse este \textit{payload} se genera un proceso, como en cualquier otra ocasión. Tras descargarse el código compilado de \texttt{meterpreter} este se carga en el espacio de memoria del proceso y pasamos a ejecutar la shell que recibimos de vuelta.
 
                 \newpar
 
@@ -530,7 +530,7 @@
                 Asimismo hemos considerado mejoras como puede ser la encriptación de las comunicaciones. Aunque no hemos llegado a implementarlas sería interesante intentar asegurar que la información extraida de la víctima no puede ser leida ni por terceros ni por ningún defensor del sistema comprometido.
 
             \subsubsection{Esquivando a los antivirus}
-                Antes ya adelantábamos cómo uno de los métodos típicos de detección de malware es la comparación con otras muestras maliciosas conocidas. En un intento de camuflar programas maliciosos podemos tratar de ofuscarlos, esto es, enredar tanto el código que la similitud con otras muestras conocidas se reduzca enormemente. Para ello contamos con herramientas como los codificadores o encoders. Uno de los ejemplos más conocidos es \textit{Shikata-Ga-Nai} que significa "no se puede hacer nada" en japonés, aludiendo a cómo complica la detección del malware codificado por parte de programas especializados.
+                Antes ya adelantábamos cómo uno de los métodos típicos de detección de malware es la comparación con otras muestras maliciosas conocidas. Nosotros hemos subido la muestras generada para \texttt{Linux} a \texttt{Virus Total} \cite{bib:virus_total} para su análisis y, en efecto, ha sido reconocida por antivirus como \texttt{Kaspersky} y \texttt{Avast}. En un intento de camuflar programas maliciosos podemos tratar de ofuscarlos, esto es, enredar tanto el código que la similitud con otras muestras conocidas se reduzca enormemente. Para ello contamos con herramientas como los codificadores o encoders. Uno de los ejemplos más conocidos es \textit{Shikata-Ga-Nai} que significa "no se puede hacer nada" en japonés, aludiendo a cómo complica la detección del malware codificado por parte de programas especializados.
 
                 \newpar
 

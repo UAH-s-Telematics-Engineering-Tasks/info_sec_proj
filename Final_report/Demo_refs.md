@@ -1,6 +1,0 @@
-- Metasploit Atomation -> https://www.offensive-security.com/metasploit-unleashed/writing-meterpreter-scripts/
-- Shikata-Ga-Nai Explained -> https://marcosvalle.github.io/re/exploit/2018/08/25/shikata-ga-nai.html
-- Yet Another Shikata Site -> https://www.boozallen.com/c/insight/blog/the-shikata-ga-nai-encoder.html
-- Meterpreter Info -> https://www.offensive-security.com/metasploit-unleashed/about-meterpreter/
-- Virus Total -> https://www.virustotal.com
-- Metasploit Description -> https://tools.kali.org/exploitation-tools/metasploit-framework
