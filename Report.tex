@@ -55,14 +55,23 @@
     \vskip 0.5cm
 }
 
+% Remove the title page's number
+\usepackage{titling}
+
 \title{Investigación sobre el \texttt{malware} oculto}
 \author{Noelia Díaz-Pinto Morcillo \\ Cristian Camilo Morales Tapias \\ Ricardo Alfonso Casanova Lozano \\ Carlos Ortega Marchamalo \\ Pablo Collado Soto}
 \date{}
 
 \begin{document}
-    \begin{titlepage}
+    \begin{titlingpage}
         \maketitle
-    \end{titlepage}
+        \newpar
+        \newpar
+        \begin{figure}[!htb]
+            \centering
+            \includegraphics[width=0.75\linewidth]{cover_pic.jpg}
+        \end{figure}
+    \end{titlingpage}
 
     \newpage
     \tableofcontents
