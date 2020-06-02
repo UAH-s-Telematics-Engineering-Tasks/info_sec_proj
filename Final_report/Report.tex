@@ -7,13 +7,10 @@
 \renewcommand{\figurename}{Figura}
 \renewcommand{\tablename}{Tabla}
 \renewcommand{\refname}{Referencias}
+\renewcommand{\contentsname}{Contenidos}
 
 % Make the References section show up in the table of contents
 \usepackage[nottoc, numbib]{tocbibind}
-
-% Bibliography stuff:
-    % bib:malware_nodes
-    % bib:malware_hybrid -> M. Eskandari and S. Hashemi “Metamorphic malware detection using control flow graph mining”. International Journal of Compute Science Network Security,pp 1-6 ,2011
 
 % Let us cite the bibliography entries
 \usepackage{cite}
@@ -25,14 +22,14 @@
 % Links please!
 \usepackage{hyperref}
 
-% Link style!
+% Format the links
 \hypersetup{
-    colorlinks = true,
-    linkcolor = blue,
-    filecolor = magenta,
-    urlcolor = cyan,
+    pdfborder = {0 0 0},    % Remove the ugly border
+    colorlinks = true,      % Let there be color
+    citecolor = black,      % Make citations appear normal (i.e black)
+    linkcolor = black,      % The same for links (i.e table of contents)
+    urlcolor = cyan         % Color the web links. (cyan is fancy for blueish...)
 }
-\urlstyle{same}
 
 % Modify the margins
 \usepackage{geometry}
@@ -390,7 +387,7 @@
 
             \newpar
 
-            Señalamos que los \textit{scripts} comentados que automatizan la tarea se pueden encontrar \href{https://github.com/UAH-s-Telematics-Engineering-Tasks/info_sec_proj/scripts}{en nuestro repositorio de \texttt{GitHub}}. No hemos incluido el código en este informe ya que creemos que sería poco práctico y reduciría enormemente el espacio del que disponemos para comentar nuestra investigación y puesta en práctica de la materia.
+            Señalamos que los \textit{scripts} comentados que automatizan la tarea se pueden encontrar \href{https://github.com/UAH-s-Telematics-Engineering-Tasks/info_sec_proj/tree/master/Scripts}{en nuestro repositorio de \texttt{GitHub}}. No hemos incluido el código en este informe ya que creemos que sería poco práctico y reduciría enormemente el espacio del que disponemos para comentar nuestra investigación y puesta en práctica de la materia.
 
             \newpar
 
